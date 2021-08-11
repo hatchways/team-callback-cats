@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
   profile_pic: {
     type: String,
     default: "some default pic"
+  },
+  description: {
+    type: String,
+    default: ""
   }
 });
 
