@@ -21,3 +21,19 @@ exports.searchUsers = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ users: users });
 });
+
+
+// @route CREATE /profile
+// @desc create a profile with given parameter
+// @access Private
+
+exports.createProfile = asyncHandler(async (req, res, next) => {
+  const { username, 
+          email, 
+          password, 
+          register_date, 
+          location, 
+          phone_number, 
+          profile_pic, 
+          description } = req.body; 
+});

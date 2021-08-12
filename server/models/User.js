@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  id:{
+    type: String,
+    required: true,
+    unique: true
+  },
   register_date: {
     type: Date,
     default: Date.now
@@ -31,6 +36,12 @@ const userSchema = new mongoose.Schema({
   profile_pic: {
     type: String,
     default: "some default pic"
+  },
+  gender: {
+    type: String,
+    enum: ['MALE', 'FEMALE', 'NON-BINARY'],
+    required: true,
+    default: 'MALE'
   },
   description: {
     type: String,
