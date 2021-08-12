@@ -6,8 +6,8 @@ const SitterForm: FC = () => {
   const classes = useStyles();
 
   return (
-    <Typography className={classes.formPlaceholder}>
-      <h1>This is the sitter registration form</h1>
+    <Typography variant="h4" className={classes.formPlaceholder}>
+      This is the sitter registration form
     </Typography>
   );
 };

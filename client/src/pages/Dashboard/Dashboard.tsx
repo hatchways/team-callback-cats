@@ -5,20 +5,11 @@ import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
-import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
-
-/**********************
- TODO
-   history.location = 
-        notifications => modal only or whole page? TBD
-     || my-jobs => Where is the mock?
-     || my-sitters => Your next booking
-                      Current bookings
-                      calendar
-     || messages => activechat & chatSideBanner
-     || /my username => current user profile ( maybe not needed on dashboard )
- ***********************/
+import Notifications from '../../components/Notifications/Notifications';
+import Jobs from '../../components/AuthHeader/Jobs/Jobs';
+import Sitters from '../../components/AuthHeader/Sitters/Sitters';
+import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -43,6 +34,11 @@ export default function Dashboard(): JSX.Element {
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <Grid item className={classes.drawerWrapper}>
+        <Notifications />
+        {/* if Sitter */}
+        <Jobs />
+        {/* if Owner */}
+        <Sitters />
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
     </Grid>

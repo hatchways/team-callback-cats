@@ -1,4 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../context/useAuthContext';
 import useStyles from './useStyles';
 import Logo from '../../Images/logo.png';
 import PublicLinks from './PublicLinks';
@@ -6,17 +8,18 @@ import MemberLinks from './MemberLinks';
 
 const Navbar: FC = () => {
   const classes = useStyles();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedInUser } = useAuth();
+  const history = useHistory();
 
-  //placeholder toggle state
+  // Go to home page
   const handleClick = () => {
-    setLoggedIn(!loggedIn);
+    history.push('/');
   };
 
   return (
     <div className={classes.nav}>
       <img src={Logo} className={classes.logo} onClick={handleClick} />
-      {!loggedIn ? <PublicLinks /> : <MemberLinks />}
+      {!loggedInUser ? <PublicLinks /> : <MemberLinks />}
     </div>
   );
 };
