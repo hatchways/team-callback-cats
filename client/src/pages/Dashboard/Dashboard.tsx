@@ -8,6 +8,18 @@ import { useHistory } from 'react-router-dom';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
 
+/**********************
+ TODO
+   history.location = 
+        notifications => modal only or whole page? TBD
+     || my-jobs => Where is the mock?
+     || my-sitters => Your next booking
+                      Current bookings
+                      calendar
+     || messages => activechat & chatSideBanner
+     || /my username => current user profile ( maybe not needed on dashboard )
+ ***********************/
+
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
 
