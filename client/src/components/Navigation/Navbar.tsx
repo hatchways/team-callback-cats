@@ -17,10 +17,10 @@ const Navbar: FC = () => {
   };
 
   return (
-    <div className={classes.nav}>
+    <nav className={classes.nav}>
       <img src={Logo} className={classes.logo} onClick={handleClick} />
-      {!loggedInUser ? <PublicLinks /> : <MemberLinks />}
-    </div>
+      {loggedInUser ? <PublicLinks /> : <MemberLinks />}
+    </nav>
   );
 };
 

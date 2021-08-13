@@ -4,11 +4,11 @@ const useStyles = makeStyles(() => ({
   nav: {
     backgroundColor: '#fff',
     width: '100vw',
+    height: '10vh',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '0 1rem',
-    height: '10vh',
   },
   logo: {
     width: '200px',
@@ -61,15 +61,18 @@ const useStyles = makeStyles(() => ({
   },
   memberLinkItem: {
     padding: '.5rem 1rem',
-    marginRight: '1rem',
-    fontSize: '1.2rem',
+    marginRight: '1.5rem',
+    minWidth: 'fit-content',
+    fontSize: '.9rem',
     fontWeight: 600,
-  },
-  userAvatar: {
     '&:hover': {
       cursor: 'pointer',
       filter: 'brightness(110%)',
     },
+  },
+  userAvatar: {
+    height: '3rem',
+    width: '3rem',
   },
   profile: {
     position: 'relative',
