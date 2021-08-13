@@ -20,7 +20,8 @@ function App(): JSX.Element {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <ProtectedRoute path="/dashboard">
+                <Route exact path="/demo" component={Dashboard} />
+                <ProtectedRoute exact path="/dashboard">
                   <Dashboard />
                 </ProtectedRoute>
               </Switch>
