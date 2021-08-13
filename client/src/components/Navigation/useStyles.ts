@@ -3,16 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   nav: {
     backgroundColor: '#fff',
-    width: '100vw',
-    height: '10vh',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '0 1rem',
+    padding: '.5rem 1rem',
+    color: '#000',
+    position: 'relative',
+    '&:hover': {
+      fontWeight: 'bolder',
+    },
   },
   logo: {
     width: '200px',
-    marginLeft: '1rem',
+    position: 'absolute',
+    top: '50%',
+    left: '2rem',
+    transform: 'translateY(-50%)',
   },
   publicLinks: {
     display: 'flex',
