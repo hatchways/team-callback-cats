@@ -17,6 +17,8 @@ export default function Dashboard(): JSX.Element {
   const history = useHistory();
 
   useEffect(() => {
+    console.log('Dashboard Component has Mounted');
+    alert('Dashboard Component has Mounted');
     initSocket();
   }, [initSocket]);
 
@@ -33,6 +35,9 @@ export default function Dashboard(): JSX.Element {
       <Grid item className={classes.drawerWrapper}>
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
+      <h2>
+        Hello <span style={{ fontStyle: 'italic', color: 'orange' }}>{loggedInUser.username + '!'}</span>
+      </h2>
     </Grid>
   );
 }

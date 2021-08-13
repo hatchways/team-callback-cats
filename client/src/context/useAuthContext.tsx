@@ -9,17 +9,19 @@ interface IAuthContext {
   loggedInUser: User | null | undefined;
   updateLoginContext: (data: AuthApiDataSuccess) => void;
   logout: () => void;
+  logInAsDemoUser: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
   loggedInUser: undefined,
   updateLoginContext: () => null,
   logout: () => null,
+  logInAsDemoUser: () => null,
 });
 
 export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
   // default undefined before loading, once loaded provide user or null if logged out
-  const [loggedInUser, setLoggedInUser] = useState<User | null | undefined>();
+  const [loggedInUser, setLoggedInUser] = useState<User | null>();
   const history = useHistory();
 
   const updateLoginContext = useCallback(
@@ -29,6 +31,15 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     },
     [history],
   );
+
+  const logInAsDemoUser = useCallback(() => {
+    const demoUser = {
+      email: 'demoUser12@demo.com',
+      username: 'Beyonce_Akon',
+    };
+    setLoggedInUser(demoUser);
+    history.push('/dashboard');
+  }, [history]);
 
   const logout = useCallback(async () => {
     // needed to remove token cookie
@@ -57,7 +68,11 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     checkLoginWithCookies();
   }, [updateLoginContext, history]);
 
-  return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout, logInAsDemoUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export function useAuth(): IAuthContext {

@@ -22,6 +22,11 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontFamily: "'Open Sans'",
   },
+  demoLoginContainer: {
+    width: '30em',
+    margin: 'auto',
+    fontFamily: "'Open Sans'",
+  },
 }));
 
 export default useStyles;
