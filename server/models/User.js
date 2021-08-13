@@ -16,12 +16,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  id:{
-    type: String,
-    required: true,
-    unique: true
-  },
-  register_date: {
+  registerDate: {
     type: Date,
     default: Date.now
   },
@@ -29,11 +24,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  phone_number: {
+  phoneNumber: {
     type: Number,
     required:true
   },
-  profile_pic: {
+  profilePic: {
     type: String,
     default: "some default pic"
   },
@@ -46,6 +41,21 @@ const userSchema = new mongoose.Schema({
   description: {
     type: String,
     default: ""
+  },
+  available: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  availabilityDate: { //user can input date and available hours of that date
+    type: Date,
+    required: false,
+    default: Date.now
+  },
+  availabilityHour: {
+    type: Number,
+    required: false,
+    default: 1 
   }
 });
 
