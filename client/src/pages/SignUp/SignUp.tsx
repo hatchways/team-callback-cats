@@ -1,5 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
+import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { FormikHelpers } from 'formik';
@@ -13,7 +14,7 @@ import { useSnackBar } from '../../context/useSnackbarContext';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
-  const { updateLoginContext } = useAuth();
+  const { updateLoginContext, logInAsDemoUser } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
 
   const handleSubmit = (
@@ -53,6 +54,11 @@ export default function Register(): JSX.Element {
             </Grid>
             <SignUpForm handleSubmit={handleSubmit} />
           </Box>
+          <div className={classes.demoLoginContainer}>
+            <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
+              {'LOGIN DEMO USER'}
+            </Button>
+          </div>
           <Box p={1} alignSelf="center" />
         </Box>
       </Grid>
