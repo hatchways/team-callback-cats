@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  register_date: {
+  registerDate: {
     type: Date,
     default: Date.now
   },
@@ -24,11 +24,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  phone_number: {
+  phoneNumber: {
     type: Number,
     required:true
   },
-  profile_pic: {
+  profilePic: {
     type: String,
     default: "some default pic"
   },

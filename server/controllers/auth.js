@@ -114,3 +114,12 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
 
   res.send("You have successfully logged out");
 });
+
+
+
+// @route GET /auth/ping
+// @desc ping
+// @access Public
+ exports.pingUser = asyncHandler(async (req, res, next) => {
+   res.send("Pinged");
+ })
