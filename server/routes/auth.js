@@ -17,6 +17,7 @@ router.route('/user').get(protect, loadUser);
 
 router.route('/logout').get(logoutUser);
 
-//router.route('/ping').get(pingUser);
+
+
 
 module.exports = router;
