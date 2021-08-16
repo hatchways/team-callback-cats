@@ -1,6 +1,6 @@
 import { MuiThemeProvider } from '@material-ui/core';
 import { theme } from './themes/theme';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -9,7 +9,7 @@ import SitterForm from './pages/SitterRegistration/SitterForm';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
-
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 function App(): JSX.Element {
@@ -23,9 +23,10 @@ function App(): JSX.Element {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/dashboard">
+                <Route exact path="/demo" component={Dashboard} />
+                <ProtectedRoute exact path="/dashboard">
                   <Dashboard />
-                </Route>
+                </ProtectedRoute>
                 <Route exact path="/become-a-sitter" component={SitterForm} />
                 <Route path="*">
                   <Redirect to="/login" />
