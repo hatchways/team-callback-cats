@@ -19,6 +19,22 @@ const userSchema = new mongoose.Schema({
   register_date: {
     type: Date,
     default: Date.now
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  phone_number: {
+    type: Number,
+    required:true
+  },
+  profile_pic: {
+    type: String,
+    default: "some default pic"
+  },
+  description: {
+    type: String,
+    default: ""
   }
 });
 
