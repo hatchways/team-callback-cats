@@ -39,7 +39,7 @@ export default function Login(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper}>
+      <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} className={classes.grid}>
         <Box className={classes.authWrapper}>
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
