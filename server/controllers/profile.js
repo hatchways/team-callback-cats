@@ -14,7 +14,6 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
     const { username, 
             email, 
             password,
-            registerDate,
             location,
             phoneNumber,
             profilePic,
@@ -38,7 +37,6 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
     username,
     email,
     password,
-    registerDate,
     location,
     phoneNumber,
     profilePic,
@@ -54,20 +52,19 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
       maxAge: secondsInWeek * 1000
     });
 
-    res.status(201).json({
-      success: {
+    res.status(201).json(
+      {
         user: {
           id: user._id,
           username: user.username,
           email: user.email,
-          registerDate: user.registerDate,
           location: user.location,
           phoneNumber: user.phoneNumber,
           profilePic: user.profilePic,
           description: user.description
         }
       }
-    });
+    );
   } else {
     res.status(400);
     throw new Error("Invalid user data");
@@ -84,7 +81,6 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
     const { username, 
             email, 
             password,
-            registerDate,
             location,
             phoneNumber,
             profilePic,
@@ -109,7 +105,6 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
         "username": username,
         "email": email,
         "password": password,
-        "registerDate": registerDate,
         "location": location,
         "phoneNumber": phoneNumber,
         "profilePic": profilePic,
@@ -120,12 +115,20 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
             res.status(400);
         }
         else{
-            res.status(202);
+            res.status(200).json({
+              user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                location: user.location,
+                phoneNumber: user.phoneNumber,
+                profilePic: user.profilePic,
+                description: user.description
+              }
+            });
         }
 
     })
-    
-    
 }) 
 
 
@@ -137,12 +140,21 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
 
     const user = await User.findById({ id });
 
-    User.findById(id, function (err, docs) {
+    User.findById(id, function (err, user) {
     if (err){
         res.status(204);
     }
     else{
-        res.status(200).json(docs);
+        res.status(200).json({
+          user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          location: user.location,
+          phoneNumber: user.phoneNumber,
+          profilePic: user.profilePic,
+          description: user.description
+        });
     }
 });
 }) 
@@ -153,9 +165,8 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.getAllProfiles = asyncHandler(async (req, res, next) => {
 
-    User.find({}, function (err, users) {
-        res.send(users);
-    });
+     User.find({}, '-password', function (err, users) {
+       res.status(200).json(users);
+  });
 }) 
-
 
