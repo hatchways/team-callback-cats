@@ -17,8 +17,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   registerDate: {
-    type: Date,
-    default: Date.now
+    createdAt: 'created_at'
   },
   location: {
     type: String,
@@ -28,6 +27,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required:true
   },
+  //todo: replace default pic
   profilePic: {
     type: String,
     default: "some default pic"
