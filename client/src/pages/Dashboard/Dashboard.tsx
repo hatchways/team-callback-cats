@@ -1,6 +1,4 @@
-import Grid from '@material-ui/core/Grid';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { Grid , CssBaseline, Typography, CircularProgress } from '@material-ui/core';
 import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
@@ -17,8 +15,6 @@ export default function Dashboard(): JSX.Element {
   const history = useHistory();
 
   useEffect(() => {
-    console.log('Dashboard Component has Mounted');
-    alert('Dashboard Component has Mounted');
     initSocket();
   }, [initSocket]);
 
@@ -35,9 +31,12 @@ export default function Dashboard(): JSX.Element {
       <Grid item className={classes.drawerWrapper}>
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
-      <h2>
-        Hello <span style={{ fontStyle: 'italic', color: 'orange' }}>{loggedInUser.username + '!'}</span>
-      </h2>
+      <Typography variant="h2">
+        Hello{' '}
+        <Typography component="span" style={{ fontStyle: 'italic', color: 'orange' }}>
+          {loggedInUser.username + '!'}
+        </Typography>
+      </Typography>
     </Grid>
   );
 }

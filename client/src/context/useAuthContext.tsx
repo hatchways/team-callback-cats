@@ -65,7 +65,7 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
         }
       });
     };
-    checkLoginWithCookies();
+    //checkLoginWithCookies();
   }, [updateLoginContext, history]);
 
   return (

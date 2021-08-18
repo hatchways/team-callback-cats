@@ -12,6 +12,12 @@ import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
 
+//hardcorded demo user credentials
+const demoUser = {
+  demoEmail: 'demoUser12@demo.com',
+  demoPassword: 'Beyonce_Akon',
+};
+
 export default function Login(): JSX.Element {
   const classes = useStyles();
   const { updateLoginContext, logInAsDemoUser } = useAuth();
@@ -37,6 +43,8 @@ export default function Login(): JSX.Element {
     });
   };
 
+  const { demoEmail, demoPassword } = demoUser;
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -54,8 +62,8 @@ export default function Login(): JSX.Element {
             <LoginForm handleSubmit={handleSubmit} />
           </Box>
           <div className={classes.demoLoginContainer}>
-            <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
-              {'LOGIN DEMO USER'}
+            <Button onClick={() => login(demoEmail, demoPassword)} size="small" variant="contained" color="secondary">
+              {'DEMO USER LOGIN'}
             </Button>
           </div>
           <Box p={1} alignSelf="center" />
