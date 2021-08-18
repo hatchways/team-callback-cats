@@ -3,40 +3,15 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
-import register from '../../helpers/APICalls/register';
 import SignUpForm from './SignUpForm/SignUpForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import { useAuth } from '../../context/useAuthContext';
-import { useSnackBar } from '../../context/useSnackbarContext';
+import { useLoginAndSignup } from '../../context/useLoginAndSignup';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
-  const { updateLoginContext, logInAsDemoUser } = useAuth();
-  const { updateSnackBarMessage } = useSnackBar();
-
-  const handleSubmit = (
-    { username, email, password }: { email: string; password: string; username: string },
-    { setSubmitting }: FormikHelpers<{ email: string; password: string; username: string }>,
-  ) => {
-    register(username, email, password).then((data) => {
-      if (data.error) {
-        console.error({ error: data.error.message });
-        setSubmitting(false);
-        updateSnackBarMessage(data.error.message);
-      } else if (data.success) {
-        updateLoginContext(data.success);
-      } else {
-        // should not get here from backend but this catch is for an unknown issue
-        console.error({ data });
-
-        setSubmitting(false);
-        updateSnackBarMessage('An unexpected error occurred. Please try again');
-      }
-    });
-  };
+  const { handleSubmit_signup, logInAsDemoUser } = useLoginAndSignup();
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -52,7 +27,7 @@ export default function Register(): JSX.Element {
                 </Typography>
               </Grid>
             </Grid>
-            <SignUpForm handleSubmit={handleSubmit} />
+            <SignUpForm handleSubmit={handleSubmit_signup} />
           </Box>
           <div className={classes.demoLoginContainer}>
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">

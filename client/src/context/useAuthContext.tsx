@@ -9,14 +9,12 @@ interface IAuthContext {
   loggedInUser: User | null | undefined;
   updateLoginContext: (data: AuthApiDataSuccess) => void;
   logout: () => void;
-  logInAsDemoUser: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
   loggedInUser: undefined,
   updateLoginContext: () => null,
   logout: () => null,
-  logInAsDemoUser: () => null,
 });
 
 export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
@@ -31,15 +29,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     },
     [history],
   );
-
-  const logInAsDemoUser = useCallback(() => {
-    const demoUser = {
-      email: 'demoUser12@demo.com',
-      username: 'Beyonce_Akon',
-    };
-    setLoggedInUser(demoUser);
-    history.push('/dashboard');
-  }, [history]);
 
   const logout = useCallback(async () => {
     // needed to remove token cookie
@@ -61,18 +50,14 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
         } else {
           // don't need to provide error feedback as this just means user doesn't have saved cookies or the cookies have not been authenticated on the backend
           setLoggedInUser(null);
-          history.push('/login');
+          //history.push('/login');
         }
       });
     };
-    //checkLoginWithCookies();
+    checkLoginWithCookies();
   }, [updateLoginContext, history]);
 
-  return (
-    <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout, logInAsDemoUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;
 };
 
 export function useAuth(): IAuthContext {

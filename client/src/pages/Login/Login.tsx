@@ -3,47 +3,15 @@ import { Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
-import login from '../../helpers/APICalls/login';
 import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import { useAuth } from '../../context/useAuthContext';
-import { useSnackBar } from '../../context/useSnackbarContext';
-
-//hardcorded demo user credentials
-const demoUser = {
-  demoEmail: 'demoUser12@demo.com',
-  demoPassword: 'Beyonce_Akon',
-};
+import { useLoginAndSignup } from '../../context/useLoginAndSignup';
 
 export default function Login(): JSX.Element {
+  const { handleSubmit_login, logInAsDemoUser } = useLoginAndSignup();
   const classes = useStyles();
-  const { updateLoginContext, logInAsDemoUser } = useAuth();
-  const { updateSnackBarMessage } = useSnackBar();
-
-  const handleSubmit = (
-    { email, password }: { email: string; password: string },
-    { setSubmitting }: FormikHelpers<{ email: string; password: string }>,
-  ) => {
-    login(email, password).then((data) => {
-      if (data.error) {
-        setSubmitting(false);
-        updateSnackBarMessage(data.error.message);
-      } else if (data.success) {
-        updateLoginContext(data.success);
-      } else {
-        // should not get here from backend but this catch is for an unknown issue
-        console.error({ data });
-
-        setSubmitting(false);
-        updateSnackBarMessage('An unexpected error occurred. Please try again');
-      }
-    });
-  };
-
-  const { demoEmail, demoPassword } = demoUser;
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -59,10 +27,10 @@ export default function Login(): JSX.Element {
                 </Typography>
               </Grid>
             </Grid>
-            <LoginForm handleSubmit={handleSubmit} />
+            <LoginForm handleSubmit={handleSubmit_login} />
           </Box>
           <div className={classes.demoLoginContainer}>
-            <Button onClick={() => login(demoEmail, demoPassword)} size="small" variant="contained" color="secondary">
+            <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
               {'DEMO USER LOGIN'}
             </Button>
           </div>

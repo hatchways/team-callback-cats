@@ -1,4 +1,4 @@
-import { Grid , CssBaseline, Typography, CircularProgress } from '@material-ui/core';
+import { Grid, CssBaseline, Typography, CircularProgress } from '@material-ui/core';
 import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
@@ -31,7 +31,7 @@ export default function Dashboard(): JSX.Element {
       <Grid item className={classes.drawerWrapper}>
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
-      <Typography variant="h2">
+      <Typography variant="h5">
         Hello{' '}
         <Typography component="span" style={{ fontStyle: 'italic', color: 'orange' }}>
           {loggedInUser.username + '!'}
