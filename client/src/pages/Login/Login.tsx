@@ -7,10 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import { useLoginAndSignup } from '../../context/useLoginAndSignup';
+import { useLoginAndSignup } from '../../helpers/LoginAndSignup/useLoginAndSignup';
 
 export default function Login(): JSX.Element {
-  const { handleSubmit_login, logInAsDemoUser } = useLoginAndSignup();
+  const { loginHandleSubmit, logInAsDemoUser } = useLoginAndSignup();
   const classes = useStyles();
 
   return (
@@ -27,7 +27,7 @@ export default function Login(): JSX.Element {
                 </Typography>
               </Grid>
             </Grid>
-            <LoginForm handleSubmit={handleSubmit_login} />
+            <LoginForm handleSubmit={loginHandleSubmit} />
           </Box>
           <div className={classes.demoLoginContainer}>
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">

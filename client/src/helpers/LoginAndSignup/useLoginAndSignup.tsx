@@ -1,13 +1,13 @@
 import { FormikHelpers } from 'formik';
-import login from '../helpers/APICalls/login';
-import register from '../helpers/APICalls/register';
-import { useAuth } from './useAuthContext';
-import { useSnackBar } from './useSnackbarContext';
+import login from '../APICalls/login';
+import register from '../APICalls/register';
+import { useAuth } from '../../context/useAuthContext';
+import { useSnackBar } from '../../context/useSnackbarContext';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 interface returnType {
-  handleSubmit_login: (
+  loginHandleSubmit: (
     {
       email,
       password,
@@ -22,7 +22,7 @@ interface returnType {
       password: string;
     }>,
   ) => void;
-  handleSubmit_signup: (
+  signupHandleSubmit: (
     {
       email,
       password,
@@ -48,7 +48,7 @@ export function useLoginAndSignup(): returnType {
   const { updateSnackBarMessage } = useSnackBar();
   const history = useHistory();
 
-  const handleSubmit_login = (
+  const loginHandleSubmit = (
     { email, password }: { email: string; password: string },
     { setSubmitting }: FormikHelpers<{ email: string; password: string }>,
   ) => {
@@ -68,7 +68,7 @@ export function useLoginAndSignup(): returnType {
     });
   };
 
-  const handleSubmit_signup = (
+  const signupHandleSubmit = (
     { username, email, password }: { email: string; password: string; username: string },
     { setSubmitting }: FormikHelpers<{ email: string; password: string; username: string }>,
   ) => {
@@ -109,5 +109,5 @@ export function useLoginAndSignup(): returnType {
     history.push('/dashboard');
   }, [history, updateSnackBarMessage, updateLoginContext]);
 
-  return { handleSubmit_login, handleSubmit_signup, logInAsDemoUser };
+  return { loginHandleSubmit, signupHandleSubmit, logInAsDemoUser };
 }

@@ -7,11 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import SignUpForm from './SignUpForm/SignUpForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import { useLoginAndSignup } from '../../context/useLoginAndSignup';
+import { useLoginAndSignup } from '../../helpers/LoginAndSignup/useLoginAndSignup';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
-  const { handleSubmit_signup, logInAsDemoUser } = useLoginAndSignup();
+  const { signupHandleSubmit, logInAsDemoUser } = useLoginAndSignup();
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -27,7 +27,7 @@ export default function Register(): JSX.Element {
                 </Typography>
               </Grid>
             </Grid>
-            <SignUpForm handleSubmit={handleSubmit_signup} />
+            <SignUpForm handleSubmit={signupHandleSubmit} />
           </Box>
           <div className={classes.demoLoginContainer}>
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
