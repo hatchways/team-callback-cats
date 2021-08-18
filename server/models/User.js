@@ -17,8 +17,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   registerDate: {
-    type: Date,
-    default: Date.now
+    createdAt: 'created_at'
   },
   location: {
     type: String,
