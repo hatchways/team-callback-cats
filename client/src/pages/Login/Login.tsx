@@ -1,13 +1,8 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Button } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { CssBaseline, Paper, Button, Box, Grid, Typography } from '@material-ui/core';
 import useStyles from './useStyles';
 import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import { useLoginAndSignup } from '../../helpers/LoginAndSignup/useLoginAndSignup';
+import { useLoginAndSignup } from '../../helpers/useLoginAndSignup/useLoginAndSignup';
 
 export default function Login(): JSX.Element {
   const { loginHandleSubmit, logInAsDemoUser } = useLoginAndSignup();
@@ -29,11 +24,11 @@ export default function Login(): JSX.Element {
             </Grid>
             <LoginForm handleSubmit={loginHandleSubmit} />
           </Box>
-          <div className={classes.demoLoginContainer}>
+          <Box className={classes.demoLoginContainer}>
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
-              {'DEMO USER LOGIN'}
+              {'LOGIN WITH DEMO USER'}
             </Button>
-          </div>
+          </Box>
           <Box p={1} alignSelf="center" />
         </Box>
       </Grid>

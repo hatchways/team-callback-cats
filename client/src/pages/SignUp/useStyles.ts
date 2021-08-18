@@ -23,9 +23,10 @@ const useStyles = makeStyles(() => ({
     fontFamily: "'Open Sans'",
   },
   demoLoginContainer: {
-    width: '30em',
+    width: 200,
+    textAlign: 'center',
     margin: 'auto',
-    fontFamily: "'Open Sans'",
+    fontFamily: '-apple-system',
   },
 }));
 
