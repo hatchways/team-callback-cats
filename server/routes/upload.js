@@ -1,11 +1,10 @@
 const aws = require('aws-sdk');
 const express = require('express');
+const router = express.Router();
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-import { config } from '../utils/s3Config';
-const s3URL = 'lovingdogsitter.s3.us-west-1.amazonaws.com/media';
+const config = require('../utils/s3Config');
 
-const app = express();
 const s3 = new aws.S3(config);
 
 const upload = multer({
@@ -22,6 +21,9 @@ const upload = multer({
 })
 
 // upload route | Allow 5 images
-app.put(`/${s3URL}`, upload.array('photos', 5), (req, res, next) => {
+router.post('/upload-image', upload.array('photos', 5), (req, res, next) => {
     res.send(`Successfully uploaded ${req.files.length} files!`);
 });
+
+
+module.exports = router;
