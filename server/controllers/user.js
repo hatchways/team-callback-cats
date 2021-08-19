@@ -22,3 +22,37 @@ exports.searchUsers = asyncHandler(async (req, res, next) => {
   res.status(200).json({ users: users });
 });
 
+
+// @route CREATE /profile
+// @desc create a profile with given parameter
+// @access Private
+
+//exports.createProfile = asyncHandler(async (req, res, next) => {
+//   const { newUsername, 
+//           newemail, 
+//           password, 
+//           register_date, 
+//           location, 
+//           phone_number, 
+//           profile_pic, console.log("pinged");
+//    res.status(200);
+//           description } = req.body;
+  
+//   var doc1 = new User({ 
+//           username 
+//   });
+
+//   doc1.save(function(err, doc) {
+//     if (err) return console.error(err);
+//     console.log("Document inserted succussfully!");
+//   });
+// });
+
+
+// @route GET /ping
+// @desc ping server
+// @access Public
+
+  exports.pingServer = asyncHandler(async (req, res, next) => {
+    res.send('aaaaaaaaaaaa');
+  })
