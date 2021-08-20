@@ -11,7 +11,7 @@ exports.pingServer = asyncHandler(async (req, res, next) => {
 // @desc get a profile with given ID
 // @access Private
 exports.updateProfile = asyncHandler(async (req, res, next) => {
-    const { id } = req.user.id;
+    const  id  = req.user.id;
 
     const { username, 
             email, 
@@ -71,7 +71,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
 // @desc update a profile with the given ID and parameters
 // @access Private
 exports.getProfile = asyncHandler(async (req, res, next) => {
-    const { id } = req.user.id;
+    const id = req.user.id;
 
     const user = await User.findById({ id });
 
