@@ -9,9 +9,9 @@ const { pingServer,
 
 router.route("/pingServer").get(pingServer);
 
-router.route("/:id").put(updateProfile);
+router.route("/").put(updateProfile);
 
-router.route("/:id").get(protect, getProfile);
+router.route("/").get(protect, getProfile);
 
 router.route("/").get(protect, getAllProfiles);
 
