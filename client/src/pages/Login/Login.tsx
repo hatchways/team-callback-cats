@@ -4,7 +4,7 @@ import LoginForm from './LoginForm/LoginForm';
 import AuthLink from '../../components/AuthLink/AuthLink';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
-import { useLoginAndSignup } from '../../helpers/useLoginAndSignup/useLoginAndSignup';
+import { useLoginAndSignup } from '../../helpers/LoginAndSignup/useLoginAndSignup';
 
 export default function Login(): JSX.Element {
   const { loginHandleSubmit, logInAsDemoUser } = useLoginAndSignup();
@@ -23,8 +23,8 @@ export default function Login(): JSX.Element {
                 </Typography>
               </Grid>
             </Grid>
-            <AuthLink linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
             <LoginForm handleSubmit={loginHandleSubmit} />
+            <AuthLink linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
           </Box>
           <Box className={classes.demoLoginContainer}>
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">

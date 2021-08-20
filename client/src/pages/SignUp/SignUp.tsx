@@ -4,7 +4,7 @@ import SignUpForm from './SignUpForm/SignUpForm';
 import AuthLink from '../../components/AuthLink/AuthLink';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
-import { useLoginAndSignup } from '../../helpers/useLoginAndSignup/useLoginAndSignup';
+import { useLoginAndSignup } from '../../helpers/LoginAndSignup/useLoginAndSignup';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
@@ -23,8 +23,8 @@ export default function Register(): JSX.Element {
                 </Typography>
               </Grid>
             </Grid>
-            <AuthLink linkTo="/login" asideText="Already a member?" btnText="Login" />
             <SignUpForm handleSubmit={signupHandleSubmit} />
+            <AuthLink linkTo="/login" asideText="Already a member?" btnText="Login" />
           </Box>
           <Box className={classes.demoLoginContainer}>
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
