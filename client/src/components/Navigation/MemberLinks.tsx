@@ -29,6 +29,7 @@ const MemberLinks: FC = () => {
   // Logout handler
   const handleLogout = () => {
     logout();
+    history.push('/login');
   };
 
   return (
