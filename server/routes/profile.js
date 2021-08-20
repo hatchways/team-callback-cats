@@ -1,7 +1,7 @@
 const express = require("express");
+const protect = require('../middleware/auth');
 const router = express.Router();
 const { pingServer,
-        createProfile,
         updateProfile,
         getProfile,
         getAllProfiles} = require("../controllers/profile");
@@ -9,12 +9,10 @@ const { pingServer,
 
 router.route("/pingServer").get(pingServer);
 
- router.route("/").post(createProfile);
+router.route("/:id").put(updateProfile);
 
- router.route("/:id").put(updateProfile);
+router.route("/:id").get(protect, getProfile);
 
- router.route("/:id").get(getProfile);
-
- router.route("/").get(getAllProfiles);
+router.route("/").get(protect, getAllProfiles);
 
 module.exports = router;
