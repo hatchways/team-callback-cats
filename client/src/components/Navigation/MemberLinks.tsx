@@ -27,10 +27,14 @@ const MemberLinks: FC = () => {
     history.push('/login');
   };
 
+  const handleJobClick = () => {
+    role === 'owner' ? history.push('/my-sitters') : history.push('/my-jobs');
+  };
+
   return (
     <List component="ul" className={classes.memberLinks}>
       {/* My sitters or My Jobs depending on user */}
-      <ListItem className={classes.memberLinkItem} onClick={() => history.push(`/${role}`)}>
+      <ListItem className={classes.memberLinkItem} onClick={handleJobClick}>
         {role === 'owner' ? 'My Sitters' : 'My Jobs'}
       </ListItem>
       <ListItem className={classes.memberLinkItem} onClick={() => history.push(`/messages`)}>

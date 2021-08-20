@@ -6,7 +6,10 @@ import Signup from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navbar from './components/Navigation/Navbar';
 import SitterForm from './pages/SitterRegistration/SitterForm';
-
+import Jobs from './pages/Jobs/Jobs';
+import Sitters from './pages/Sitters/Sitters';
+import Messages from './pages/Messages/Messages';
+import Profile from './pages/Profile/Profile';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -29,6 +32,10 @@ function App(): JSX.Element {
                   <Dashboard />
                 </ProtectedRoute>
                 <Route exact path="/become-a-sitter" component={SitterForm} />
+                <Route exact path="/my-jobs" component={Jobs} />
+                <Route exact path="/my-sitters" component={Sitters} />
+                <Route exact path="/messages" component={Messages} />
+                <Route exact path="/profile" component={Profile} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
