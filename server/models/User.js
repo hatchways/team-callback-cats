@@ -22,21 +22,21 @@ const userSchema = new mongoose.Schema({
   },
   firstName:{
     type: String,
-    required: true,
+    required: false,
     default: ""
   },
   lastName:{
     type: String,
-    required: true,
+    required: false,
     default: ""
   },
   location: {
     type: String,
-    required: true
+    required: false
   },
   phoneNumber: {
     type: Number,
-    required:true
+    required:false
   },
   profilePic: {
     type: String,
