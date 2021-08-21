@@ -21,6 +21,16 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: Date.now
   },
+  firstName:{
+    type: String,
+    required: true,
+    default: ""
+  },
+  lastName:{
+    type: String,
+    required: true,
+    default: ""
+  },
   location: {
     type: String,
     required: true
@@ -33,9 +43,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "some default pic"
   },
+  gender: {
+    type: String,
+    enum: ['MALE', 'FEMALE', 'NON-BINARY'],
+    required: true,
+    default: 'MALE'
+  },
   description: {
     type: String,
     default: ""
+  },
+  available: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  availabilityDate: { //user can input date and available hours of that date
+    type: Date,
+    required: false,
+    default: Date.now
+  },
+  availabilityHour: {
+    type: Number,
+    required: false,
+    default: 1 
   }
 });
 
