@@ -2,18 +2,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: '80%', // Fix IE 11 issue.
+    margin: '2rem auto 1rem',
   },
   label: {
-    fontSize: 19,
-    color: 'rgb(0,0,0,0.4)',
-    paddingLeft: '5px',
+    fontSize: 10,
+    margin: '.5rem 0 -.5rem',
+    textTransform: 'uppercase',
+    fontWeight: 700,
+    color: 'rgb(0,0,0)',
   },
   inputs: {
-    marginTop: '.8rem',
     height: '2rem',
-    padding: '5px',
+    padding: '5px 10px',
   },
   forgot: {
     paddingRight: 10,
@@ -22,13 +23,15 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 2, 2),
     padding: 10,
-    width: 160,
-    height: 56,
+    width: 140,
+    height: 46,
     borderRadius: theme.shape.borderRadius,
-    marginTop: 49,
-    fontSize: 16,
-    backgroundColor: '#3a8dff',
+    fontSize: 14,
+    marginTop: '2rem',
+    backgroundColor: '#ed4740',
+    color: '#fff',
     fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
 }));
 

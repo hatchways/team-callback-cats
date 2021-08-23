@@ -3,6 +3,9 @@ import useStyles from './useStyles';
 import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useLoginAndSignup } from '../../helpers/useLoginAndSignup/useLoginAndSignup';
+import AuthLink from '../../components/AuthLink/AuthLink';
+import { useAuth } from '../../context/useAuthContext';
+import { useSnackBar } from '../../context/useSnackbarContext';
 
 export default function Login(): JSX.Element {
   const { loginHandleSubmit, logInAsDemoUser } = useLoginAndSignup();
@@ -11,9 +14,8 @@ export default function Login(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
+      <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} className={classes.grid}>
         <Box className={classes.authWrapper}>
-          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
@@ -28,6 +30,8 @@ export default function Login(): JSX.Element {
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
               {'LOGIN WITH DEMO USER'}
             </Button>
+            <LoginForm handleSubmit={handleSubmit} />
+            <AuthLink linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
           </Box>
           <Box p={1} alignSelf="center" />
         </Box>

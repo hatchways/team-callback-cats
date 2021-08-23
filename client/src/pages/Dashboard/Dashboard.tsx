@@ -4,9 +4,6 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import Notifications from '../../components/Notifications/Notifications';
-import Jobs from '../../components/AuthHeader/Jobs/Jobs';
-import Sitters from '../../components/AuthHeader/Sitters/Sitters';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
@@ -32,11 +29,6 @@ export default function Dashboard(): JSX.Element {
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <Grid item className={classes.drawerWrapper}>
-        <Notifications />
-        {/* if Sitter */}
-        <Jobs />
-        {/* if Owner */}
-        <Sitters />
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
       <Typography variant="h5">

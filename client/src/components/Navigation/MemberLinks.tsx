@@ -7,11 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 import JoePlaceholder from '../../Images/775db5e79c5294846949f1f55059b53317f51e30.png';
 import logout from '../../helpers/APICalls/logout';
 
-/*********************************
-TODO
-  use context to fetch user role
-**********************************/
-
 const MemberLinks: FC = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -29,6 +24,7 @@ const MemberLinks: FC = () => {
   // Logout handler
   const handleLogout = () => {
     logout();
+    history.push('/login');
   };
 
   return (
