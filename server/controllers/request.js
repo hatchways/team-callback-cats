@@ -2,27 +2,65 @@ const Request = require('../models/Request');
 const User = require('../models/User');
 const asyncHandler = require("express-async-handler");
 
-/***********
- TODO
-    
- ************/
-
-// req.body has userId, sitterId, start, end, accepted, declined, completed, paid
+// req.body has userId, sitterId, start, end, status, paid, request._id
+// status accepts 'pending' (default) / 'accepted' / 'declined' / 'completed'
+// TODO => Handle status change cases
 
 // GET /requests: list of requests for logged in user
 exports.getRequests = asyncHandler( async (req, res, next) => {
     const { userId } = req.body;
 
-    const currentUser = await User.findById(userId);
-    console.log(currentUser);
+    // const currentUser = await User.findById(userId);
+    // console.log('current User:', currentUser);
+
+    const requests = await Request.find()
+        .then(() => {
+            console.log('All requests: ', requests);
+        })
+        .catch(err => console.log('Error getting requests:', err));
 });
 
 // POST /request: Create a new request
 exports.createRequest = asyncHandler( async (req, res, next) => {
-    res.send('Not implememented: Create request');
+    const { userId, sitterId, start, end, status, paid } = req.body;
+
+    const request = await Request.create({
+        userId, 
+        sitterId, 
+        start, 
+        end, 
+        status,
+        paid
+    })
+
+    if(request) {
+        res.status(200).send(`Request created between ${userId} and ${sitterId}`)
+    } else {
+        res.send('Error creating request');
+    }
 });
 
-// UPDATE /request/:id : Update request with approved or decline
+// UPDATE /request/:id/update : Update request with approved or decline
 exports.updateRequestStatus = asyncHandler( async (req, res, next) => {
-    res.send('Not implememented: Update request status');
+    const request = req.body;
+    const id  = request._id;
+    const { status } = request;
+
+    if (!id) {
+        res.status(404).send('Request not found');
+    }
+    await Request.findByIdAndUpdate(
+        id,
+        {
+            $set: {
+                status: status,
+            }
+        },
+    )
+    .then(() => {
+        res.status(200).send('Request status updated succesfully')
+    })
+    .catch(err => {
+        res.send('Error updating request:');
+    })
 })

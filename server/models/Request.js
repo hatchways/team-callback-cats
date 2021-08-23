@@ -17,22 +17,15 @@ const requestSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    accepted: {
-        type: Boolean,
-        default: false
-    },
-    declined: {
-        type: Boolean,
-        default: false
-    },
-    completed: {
-        type: Boolean,
-        default: false
+    status: {
+        type: String,
+        required: false
     },
     paid: {
         type: Boolean,
+        required: true,
         default: false
-    }
+    },
 });
 
 module.exports = Request = mongoose.model("request", requestSchema);
