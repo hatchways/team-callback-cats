@@ -65,7 +65,7 @@ export default function VerticalTabs(): JSX.Element {
         <Tab label="Settings" {...a11yProps(4)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item one
+        Edit profile page
         {/* <Box display="d-flex" justifyContent="flex-start" m={10} p={20} bgcolor="teal" width={900} height={600}>
           <Grid item xs={4} alignItems="center">
             <Grid container direction="row" alignItems="center" item xs={4}>
@@ -116,16 +116,16 @@ export default function VerticalTabs(): JSX.Element {
         </Box> */}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        Edit profile Photo page
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        Payment page
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        Security page
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        Settings page
       </TabPanel>
     </div>
   );
