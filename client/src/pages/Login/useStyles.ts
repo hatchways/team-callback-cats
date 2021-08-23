@@ -32,6 +32,11 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '.5px',
     textAlign: 'center',
   },
+  demoLoginContainer: {
+    width: 200,
+    textAlign: 'center',
+    margin: 'auto',
+  },
 }));
 
 export default useStyles;
