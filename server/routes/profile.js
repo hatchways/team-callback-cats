@@ -13,6 +13,6 @@ router.route("/").put(updateProfile);
 
 router.route("/").get(protect, getProfile);
 
-router.route("/").get(getAllProfiles);
+router.route("/").get(protect, getAllProfiles);
 
 module.exports = router;
