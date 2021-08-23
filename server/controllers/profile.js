@@ -3,9 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 
 
-exports.pingServer = asyncHandler(async (req, res, next) => {
-    res.send("here")
-})
+
 
 // @route PUT /profile/:id
 // @desc get a profile with given ID
@@ -21,18 +19,18 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
             profilePic,
             description} = req.body;
 
-    const emailExists = await User.findOne({ email });
+  const emailExists = await User.findOne({ email });
   const usernameExists = await User.findOne({ username});
 
 
 
   if (emailExists) {
-    res.status(404);
+    res.status(400);
     throw new Error("A user with that email already exists");
   }
 
   if (usernameExists){
-      res.status(404);
+      res.status(400);
       throw new Error("A user with that username already exists");
   }
 
@@ -89,10 +87,11 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
           phoneNumber: user.phoneNumber,
           profilePic: user.profilePic,
           description: user.description
+          }
         });
     }
-});
-}) 
+  })
+})
 
 
 // @route GET /profile
