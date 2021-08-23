@@ -26,7 +26,6 @@ const useStyles = makeStyles(() => ({
     width: 200,
     textAlign: 'center',
     margin: 'auto',
-    fontFamily: '-apple-system',
   },
 }));
 
