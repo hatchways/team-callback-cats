@@ -15,28 +15,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-  registerDate: {
-    createdAt: 'created_at'
-  },
-  location: {
-    type: String,
-    required: true
-  },
-  phoneNumber: {
-    type: Number,
-    required:true
-  },
-  //todo: replace default pic
-  profilePic: {
-    type: String,
-    default: "some default pic"
-  },
-  description: {
-    type: String,
-    default: ""
   }
-});
+  }
+);
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

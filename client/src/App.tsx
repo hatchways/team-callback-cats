@@ -20,12 +20,11 @@ function App(): JSX.Element {
             <SocketProvider>
               <Switch>
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/profileSettings" component={ProfileSettings} />
+                <Route exact path="/profile-settings" component={ProfileSettings} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
-                <Route exact path="/profileSettings" component={ProfileSettings} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
