@@ -4,13 +4,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#fff',
     height: '60vh',
-    width: '80%',
+    width: '70%',
     borderRadius: theme.shape.borderRadius,
-    boxShadow: '0px 0px 10px 5px rgba(0,0,0,0.1)',
+    boxShadow: '0px 0px 10px 2px rgba(2,2,2,0.1)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '3rem auto', // remove when outer box positioned by parent container
+    margin: '5rem auto',
   },
   container: {
     height: '85%',
@@ -20,10 +20,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  title: {
-    fontWeight: 600,
-    fontSize: '1.2rem',
   },
   avatar: {
     height: '7.5rem',
@@ -39,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
   cta: {
     width: '15rem',
     padding: '.75rem 1.5rem',
-    fontWeight: 600,
     '&:first-of-type': {
       color: '#ed4740',
       border: '1px solid #ed4740',
       marginBottom: '-1rem',
+      fontWeight: 600,
       '&:hover': {
         backgroundColor: '#ed4740',
         color: '#fff',

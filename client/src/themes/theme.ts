@@ -6,7 +6,13 @@ export const theme = createMuiTheme({
     fontSize: 12,
     button: {
       textTransform: 'none',
-      fontWeight: 700,
+      fontWeight: 400,
+      fontFamily: 'Roboto',
+    },
+    h3: {
+      fontFamily: 'Roboto',
+      fontSize: 25,
+      fontWeight: 500,
     },
   },
   palette: {
