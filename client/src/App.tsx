@@ -6,7 +6,7 @@ import Signup from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navbar from './components/Navigation/Navbar';
 import SitterForm from './pages/SitterRegistration/SitterForm';
-
+import ProfilePhoto from './components/ProfilePhoto/ProfilePhoto';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -25,6 +25,7 @@ function App(): JSX.Element {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/demo" component={Dashboard} />
+                <Route exact path="/profile" component={ProfilePhoto} />
                 <ProtectedRoute exact path="/dashboard">
                   <Dashboard />
                 </ProtectedRoute>
