@@ -1,11 +1,8 @@
 import { CssBaseline, Paper, Button, Box, Grid, Typography } from '@material-ui/core';
 import useStyles from './useStyles';
 import SignUpForm from './SignUpForm/SignUpForm';
-import AuthHeader from '../../components/AuthHeader/AuthHeader';
-import { useLoginAndSignup } from '../../helpers/useLoginAndSignup/useLoginAndSignup';
+import { useLoginAndSignup } from '../../helpers/LoginAndSignup/useLoginAndSignup';
 import AuthLink from '../../components/AuthLink/AuthLink';
-import { useAuth } from '../../context/useAuthContext';
-import { useSnackBar } from '../../context/useSnackbarContext';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
@@ -30,7 +27,6 @@ export default function Register(): JSX.Element {
             <Button onClick={logInAsDemoUser} size="small" variant="contained" color="secondary">
               {'LOGIN WITH DEMO USER'}
             </Button>
-            <SignUpForm handleSubmit={handleSubmit} />
             <AuthLink linkTo="/login" asideText="Already a member?" btnText="Login" />
           </Box>
           <Box p={1} alignSelf="center" />
