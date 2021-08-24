@@ -32,10 +32,18 @@ function App(): JSX.Element {
                   <Dashboard />
                 </ProtectedRoute>
                 <Route exact path="/become-a-sitter" component={SitterForm} />
-                <Route exact path="/my-jobs" component={Jobs} />
-                <Route exact path="/my-sitters" component={Sitters} />
-                <Route exact path="/messages" component={Messages} />
-                <Route exact path="/profile" component={Profile} />
+                <ProtectedRoute exact path="/my-jobs">
+                  <Jobs />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/my-sitters">
+                  <Sitters />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/messages">
+                  <Messages />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/profile">
+                  <Profile />
+                </ProtectedRoute>
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
