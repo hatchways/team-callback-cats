@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import useStyles from './useStyles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker } from '@material-ui/pickers';
 // import ListingCard from './ListingCard/ListingCard';
@@ -25,7 +26,10 @@ const Listings: FC = () => {
           clearable
         />
       </Box>
-      <Box className={classes.listingsContainer}></Box>
+      <Box className={classes.listingsContainer}>{/* Map over listings */}</Box>
+      <Button variant="outlined" size="large">
+        Show More
+      </Button>
     </Box>
   );
 };
