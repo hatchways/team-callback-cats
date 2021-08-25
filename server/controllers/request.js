@@ -34,13 +34,13 @@ exports.createRequest = asyncHandler( async (req, res, next) => {
     })
 
     if(request) {
-        res.status(200).send(`Request created between ${userId} and ${sitterId}`)
+        res.status(201).send(request);
     } else {
-        res.send('Error creating request');
+        res.send(500);
     }
 });
 
-// UPDATE /request/:id/update : Update request with approved or decline
+// UPDATE /request/update/:id : Update request with approved or decline
 exports.updateRequestStatus = asyncHandler( async (req, res, next) => {
     const request = req.body;
     const id  = request._id;
@@ -58,9 +58,9 @@ exports.updateRequestStatus = asyncHandler( async (req, res, next) => {
         },
     )
     .then(() => {
-        res.status(200).send('Request status updated succesfully')
+        res.send(200);
     })
     .catch(err => {
-        res.send('Error updating request:');
+        res.send(500);
     })
 })

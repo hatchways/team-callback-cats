@@ -5,6 +5,6 @@ const { getRequests, createRequest, updateRequestStatus } = require('../controll
 
 router.get('/', getRequests);
 router.post('/create', createRequest);
-router.post('/:id/update', updateRequestStatus);
+router.post('/update/:id', updateRequestStatus);
 
 module.exports = router;

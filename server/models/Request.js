@@ -1,25 +1,30 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const requestSchema = new mongoose.Schema({
     userId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     sitterId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     start: {
         type: Date,
-        default: Date.now
+        required: true
     },
     end: {
         type: Date,
-        default: Date.now
+        required: true
     },
     status: {
         type: String,
-        required: false
+        enum: ['pending', 'accepted', 'declined', 'completed'],
+        required: false,
+        default: 'pending'
     },
     paid: {
         type: Boolean,
