@@ -34,6 +34,7 @@ const MemberLinks: FC = () => {
         component={Link}
         className={classes.memberLinkItem}
         to={{
+          // TODO get loggedInUser role from profile
           pathname: role === 'owner' ? '/my-sitters' : '/my-jobs',
         }}
       >
