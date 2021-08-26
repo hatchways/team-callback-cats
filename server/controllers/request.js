@@ -1,21 +1,19 @@
 const Request = require('../models/Request');
-const User = require('../models/User');
 const asyncHandler = require("express-async-handler");
 
 // req.body has userId, sitterId, start, end, status, paid, request._id
-// status accepts 'pending' (default) / 'accepted' / 'declined' / 'completed'
 // TODO => Handle status change cases
 
 // GET /requests: list of requests for logged in user
 exports.getRequests = asyncHandler( async (req, res, next) => {
     const { userId } = req.body;
 
-    // const currentUser = await User.findById(userId);
-    // console.log('current User:', currentUser);
-
     const requests = await Request.find()
         .then(() => {
-            console.log('All requests: ', requests);
+            const userRequests = requests.filter(r => {
+                return r.userId === userId;
+            });
+            res.status(200).json(userRequests);
         })
         .catch(err => console.log('Error getting requests:', err));
 });
@@ -34,9 +32,9 @@ exports.createRequest = asyncHandler( async (req, res, next) => {
     })
 
     if(request) {
-        res.status(201).send(request);
+        res.status(201).json(request);
     } else {
-        res.send(500);
+        res.status(500).end();
     }
 });
 
@@ -47,7 +45,7 @@ exports.updateRequestStatus = asyncHandler( async (req, res, next) => {
     const { status } = request;
 
     if (!id) {
-        res.status(404).send('Request not found');
+        res.status(404);
     }
     await Request.findByIdAndUpdate(
         id,
