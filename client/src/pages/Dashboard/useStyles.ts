@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInput-underline:before': {
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
+    '& .MuiTypography-h5:last-child': {
+      paddingTop: '2em',
+    },
   },
   dashboard: { backgroundColor: '#FFFFFF' },
   drawerWrapper: {

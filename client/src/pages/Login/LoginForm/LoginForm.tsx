@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import { Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import Typography from '@material-ui/core/Typography';
+import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './useStyles';
 import { CircularProgress } from '@material-ui/core';
 
@@ -46,11 +47,15 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
     >
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
+          <InputLabel htmlFor="email" className={classes.label}>
+            E-mail address
+          </InputLabel>
           <TextField
             id="email"
-            label={<Typography className={classes.label}>E-mail address</Typography>}
             fullWidth
             margin="normal"
+            placeholder="Your email"
+            variant="outlined"
             InputLabelProps={{
               shrink: true,
             }}
@@ -65,11 +70,15 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             value={values.email}
             onChange={handleChange}
           />
+          <InputLabel htmlFor="password" className={classes.label}>
+            Password
+          </InputLabel>
           <TextField
             id="password"
-            label={<Typography className={classes.label}>Password</Typography>}
             fullWidth
             margin="normal"
+            placeholder="Enter your password"
+            variant="outlined"
             InputLabelProps={{
               shrink: true,
             }}
@@ -77,6 +86,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
               classes: { input: classes.inputs },
               endAdornment: <Typography className={classes.forgot}>Forgot?</Typography>,
             }}
+            name="password"
             type="password"
             autoComplete="current-password"
             helperText={touched.password ? errors.password : ''}

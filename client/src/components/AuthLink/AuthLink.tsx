@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
@@ -10,19 +9,17 @@ interface Props {
   btnText: string;
 }
 
-const AuthHeader = ({ linkTo, asideText, btnText }: Props): JSX.Element => {
+const AuthLink = ({ linkTo, asideText, btnText }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Box p={1} className={classes.authHeader}>
+    <Box p={1} className={classes.authLink}>
       <Typography className={classes.accAside}>{asideText}</Typography>
       <Link to={linkTo} className={classes.link}>
-        <Button color="inherit" className={classes.accBtn} variant="contained">
-          {btnText}
-        </Button>
+        {btnText}
       </Link>
     </Box>
   );
 };
 
-export default AuthHeader;
+export default AuthLink;
