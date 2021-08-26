@@ -5,8 +5,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import JoePlaceholder from '../../Images/775db5e79c5294846949f1f55059b53317f51e30.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const ProfilePhoto: FC = () => {
   const classes = useStyles();
@@ -24,18 +24,27 @@ const ProfilePhoto: FC = () => {
   };
 
   return (
-    <Box className={classes.root}>
-      <Box className={classes.container}>
+    <Box display="flex" justifyContent="center" alignItems="center" m={10} borderRadius={5} className={classes.root}>
+      <Box
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        flexDirection="column"
+        className={classes.container}
+      >
         <Typography variant="h3">Profile Photo</Typography>
         <Avatar src={JoePlaceholder} alt="User Profile Photo" className={classes.avatar} />
-        <Typography component="p" className={classes.subtitle}>
-          Be sure to use a photo that clearly shows your face
-        </Typography>
-        <Button variant="outlined" className={classes.cta} onClick={handleUpload}>
+        <Typography variant="subtitle1">Be sure to use a photo that clearly shows your face</Typography>
+        <Button
+          variant="outlined"
+          startIcon={<CloudUploadIcon />}
+          className={classes.cta}
+          onClick={handleUpload}
+          color="secondary"
+        >
           Upload a file from your device
         </Button>
-        <Button className={classes.cta} onClick={handleDelete}>
-          <FontAwesomeIcon icon={faTrashAlt} className={classes.icon} />
+        <Button className={classes.cta} onClick={handleDelete} startIcon={<DeleteOutlineIcon />}>
           Delete Photo
         </Button>
       </Box>
