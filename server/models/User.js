@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   registerDate: {
     type: Date,
+    required: true,
     default: Date.now
   },
   firstName:{
