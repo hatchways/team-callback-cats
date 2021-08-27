@@ -1,32 +1,53 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import useStyles from './useStyles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { DatePicker } from '@material-ui/pickers';
-// import ListingCard from './ListingCard/ListingCard';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Grid from '@material-ui/core/Grid';
+import ListingCard from './ListingCard/ListingCard';
 
 const Listings: FC = () => {
   const classes = useStyles();
-  const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
-    <Box className={classes.root}>
-      <Typography variant="h3">Your search results</Typography>
-      <Box className={classes.searchContainer}>
-        <TextField className={classes.searchInput}>{/* <FontAwesomeIcon icon={faSearch} /> */}</TextField>
-        <DatePicker
-          value={selectedDate}
-          label="Select Date"
-          onChange={handleDateChange}
+    <Box p={5} m={2} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+      <Typography variant="h1">Your search results</Typography>
+      <Box display="flex" m={4} className={classes.searchContainer}>
+        <TextField
+          variant="outlined"
           className={classes.searchInput}
-          clearable
-        />
+          placeholder="Toronto, Ontario"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="secondary" />
+              </InputAdornment>
+            ),
+          }}
+        ></TextField>
+        <TextField variant="outlined" type="date" className={classes.datePicker}></TextField>
       </Box>
-      <Box className={classes.listingsContainer}>{/* Map over listings */}</Box>
+      <Grid container className={classes.listingsContainer} spacing={8}>
+        {/* MAP OVER ARRAY OF LISTINGS / RESULTS */}
+        <Grid item>
+          <ListingCard />
+        </Grid>
+        <Grid item>
+          <ListingCard />
+        </Grid>
+        <Grid item>
+          <ListingCard />
+        </Grid>
+        <Grid item>
+          <ListingCard />
+        </Grid>
+        <Grid item>
+          <ListingCard />
+        </Grid>
+      </Grid>
       <Button variant="outlined" size="large">
         Show More
       </Button>

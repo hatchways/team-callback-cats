@@ -6,7 +6,7 @@ import Signup from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navbar from './components/Navigation/Navbar';
 import SitterForm from './pages/SitterRegistration/SitterForm';
-
+import Listings from './pages/Listings/Listings';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -29,6 +29,8 @@ function App(): JSX.Element {
                   <Dashboard />
                 </ProtectedRoute>
                 <Route exact path="/become-a-sitter" component={SitterForm} />
+                {/* TODO REMOVE TEMPORARY ROUTE FOR STYLING */}
+                <Route exact path="/listings" component={Listings} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>

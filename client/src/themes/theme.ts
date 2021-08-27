@@ -8,6 +8,10 @@ export const theme = createMuiTheme({
       textTransform: 'none',
       fontWeight: 700,
     },
+    h1: {
+      fontSize: '2rem',
+      fontWeight: 600,
+    },
   },
   palette: {
     primary: { main: '#3A8DFF' },
