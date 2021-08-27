@@ -57,20 +57,24 @@ const useStyles = makeStyles(() => ({
   memberLinks: {
     display: 'flex',
     backgroundColor: 'transparent',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     fontSize: '.6rem',
     listStyle: 'none',
   },
   memberLinkItem: {
+    textDecoration: 'none',
     padding: '.5rem 1rem',
-    marginRight: '1.5rem',
-    minWidth: 'fit-content',
+    margin: '0 .5rem',
+    width: 'fit-content',
     fontSize: '.9rem',
     fontWeight: 600,
     '&:hover': {
       cursor: 'pointer',
       filter: 'brightness(110%)',
+    },
+    '&:visited': {
+      color: '#000',
     },
   },
   userAvatar: {
@@ -99,6 +103,9 @@ const useStyles = makeStyles(() => ({
     },
     '&:first-of-type': {
       borderBottom: '1px solid rgba(74,106,149,0.2)',
+    },
+    '&:visited': {
+      color: '#000',
     },
   },
 }));
