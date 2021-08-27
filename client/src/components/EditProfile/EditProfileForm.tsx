@@ -42,72 +42,90 @@ const EditProfileForm = (): JSX.Element => {
     <Grid container className={classes.root}>
       <Grid item xs={12}></Grid>
       <Grid item xs={12}>
-        <Container>
+        <Container className={classes.formContainer}>
           <Formik
             initialValues={{
               ...initialFormState,
             }}
             validationSchema={formValidation}
             onSubmit={(values) => {
-              console.log('Updated details:', values);
+              //submit handler
             }}
           >
             <Paper elevation={6}>
-              <Form>
+              <Form className={classes.padding}>
                 <CssBaseline>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
-                      <Typography variant="h4">Edit Profile</Typography>
+                      <Typography className={classes.formCaption} variant="h4">
+                        Edit Profile
+                      </Typography>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">FIRST NAME</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        FIRST NAME
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <TextField name="firstName" placeholder="John" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">LAST NAME</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        LAST NAME
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <TextField name="lastName" placeholder="Doe" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">GENDER</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        GENDER
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
-                      <SelectFieldWrapper name="gender" fullwidth={false} options={genderOptions} />
+                    <Grid className={classes.formInput} item xs={9}>
+                      <SelectFieldWrapper name="gender" options={genderOptions} />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">BIRTH DATE</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        BIRTH DATE
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <DatePicker name="birthDate" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">EMAIL ADDRESS</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        EMAIL ADDRESS
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <TextField name="email" placeholder="john-doe@gmail.com" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">PHONE NUMBER</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        PHONE NUMBER
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <TextField name="phoneNumber" placeholder="Phone" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">WHERE YOU LIVE</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        WHERE YOU LIVE
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <TextField name="address" placeholder="Address" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography variant="h6">DESCRIBE YOURSELF</Typography>
+                      <Typography className={classes.label} variant="h6">
+                        DESCRIBE YOURSELF
+                      </Typography>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid className={classes.formInput} item xs={9}>
                       <TextField name="about" placeholder="About you" multiline={true} rows={5} />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid className={classes.submitBtn} item xs={12}>
                       <ButtonWrapper name="about">SAVE</ButtonWrapper>
                     </Grid>
                   </Grid>

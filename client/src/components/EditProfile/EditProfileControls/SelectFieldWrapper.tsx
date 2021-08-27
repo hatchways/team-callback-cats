@@ -7,12 +7,11 @@ interface otherProps {
     id: number;
     option: string;
   }[];
-  fullwidth: boolean;
 }
 
 export const SelectFieldWrapper: React.FC<otherProps & FieldHookConfig<string>> = (props): JSX.Element => {
   const { setFieldValue } = useFormikContext();
-  const { name, options, fullwidth } = props;
+  const { name, options} = props;
   const [field, meta] = useField(name);
 
   const handlechange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -20,16 +19,15 @@ export const SelectFieldWrapper: React.FC<otherProps & FieldHookConfig<string>> 
     setFieldValue(name, value);
   };
 
-  const errorCheck = meta && meta.touched && meta.error;
+  const errorCheck = Boolean(meta && meta.touched && meta.error);
 
   return (
     <TextField
       {...field}
-      fullWidth={fullwidth}
       variant="outlined"
-      error={errorCheck ? true : false}
+      error={errorCheck}
       helperText={errorCheck ? meta.error : ''}
-      select={true}
+      select
       onChange={handlechange}
     >
       {options.map((gender) => {

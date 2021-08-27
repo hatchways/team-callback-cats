@@ -12,14 +12,14 @@ const TextFieldWrapper: React.FC<otherProps & FieldHookConfig<string>> = (props)
   const { name, placeholder, multiline, rows } = props;
   const [field, meta] = useField(name);
 
-  const errorCheck = meta && meta.touched && meta.error;
+  const errorCheck = Boolean(meta && meta.touched && meta.error);
 
   return (
     <TextField
       {...field}
       variant="outlined"
       placeholder={placeholder}
-      error={errorCheck ? true : false}
+      error={errorCheck}
       helperText={errorCheck ? meta.error : ''}
       multiline={multiline ? true : false}
       rows={!rows ? undefined : rows}

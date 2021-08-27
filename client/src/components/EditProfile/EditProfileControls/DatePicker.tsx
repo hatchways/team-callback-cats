@@ -5,15 +5,14 @@ import { FieldHookConfig, useField } from 'formik';
 export const DatePicker: React.FC<FieldHookConfig<string>> = (props): JSX.Element => {
   const { name } = props;
   const [field, meta] = useField(name);
-  const errorCheck = meta && meta.touched && meta.error;
+  const errorCheck = Boolean(meta && meta.touched && meta.error);
 
   return (
     <TextField
       {...field}
-      type={'date'}
-      fullWidth={true}
+      type="date"
       variant="outlined"
-      error={errorCheck ? true : false}
+      error={errorCheck}
       helperText={errorCheck ? meta.error : ''}
       InputLabelProps={{ shrink: true }}
     />
