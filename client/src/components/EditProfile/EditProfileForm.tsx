@@ -1,11 +1,10 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Container, CssBaseline, Grid, Typography, Paper } from '@material-ui/core';
+import { Container, Grid, Typography, Paper, MenuItem } from '@material-ui/core';
 import TextField from './EditProfileControls/TextFieldWrapper';
-import SelectFieldWrapper from './EditProfileControls/SelectFieldWrapper';
-import DatePicker from './EditProfileControls/DatePicker';
 import ButtonWrapper from './EditProfileControls/ButtonWrapper';
 import useStyles from './useStyles';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 
 const initialFormState = {
   firstName: '',
@@ -17,7 +16,7 @@ const initialFormState = {
   address: '',
   about: '',
 };
-const genderOptions = [
+const genderCategories = [
   { id: 1, option: 'Male' },
   { id: 2, option: 'Female' },
   { id: 3, option: 'Other' },
@@ -38,11 +37,12 @@ const formValidation = yup.object().shape({
 });
 const EditProfileForm = (): JSX.Element => {
   const classes = useStyles();
+  const { root, formContainer, formCaption, padding, label, formInput, submitBtn } = classes;
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={root}>
       <Grid item xs={12}></Grid>
       <Grid item xs={12}>
-        <Container className={classes.formContainer}>
+        <Container className={formContainer}>
           <Formik
             initialValues={{
               ...initialFormState,
@@ -50,87 +50,98 @@ const EditProfileForm = (): JSX.Element => {
             validationSchema={formValidation}
             onSubmit={(values) => {
               //submit handler
+              console.log(values);
             }}
           >
             <Paper elevation={6}>
-              <Form className={classes.padding}>
-                <CssBaseline>
+              <ScopedCssBaseline>
+                <Form className={padding}>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
-                      <Typography className={classes.formCaption} variant="h4">
+                      <Typography className={formCaption} variant="h4">
                         Edit Profile
                       </Typography>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        FIRST NAME
+                      <Typography className={label} variant="h6">
+                        First name
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
+                    <Grid className={formInput} item xs={9}>
                       <TextField name="firstName" placeholder="John" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        LAST NAME
+                      <Typography className={label} variant="h6">
+                        Last name
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
+                    <Grid className={formInput} item xs={9}>
                       <TextField name="lastName" placeholder="Doe" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        GENDER
+                      <Typography className={label} variant="h6">
+                        Gender
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
-                      <SelectFieldWrapper name="gender" options={genderOptions} />
+                    <Grid className={formInput} item xs={9}>
+                      <TextField name="gender" select>
+                        {genderCategories.map((gender) => {
+                          return (
+                            <MenuItem key={gender.id} value={gender.option}>
+                              {gender.option}
+                            </MenuItem>
+                          );
+                        })}
+                      </TextField>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        BIRTH DATE
+                      <Typography className={label} variant="h6">
+                        Birth date
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
-                      <DatePicker name="birthDate" />
+                    <Grid className={formInput} item xs={9}>
+                      <TextField name="birthDate" InputLabelProps={{ shrink: true }} type="date"></TextField>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        EMAIL ADDRESS
+                      <Typography className={label} variant="h6">
+                        Email address
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
+                    <Grid className={formInput} item xs={9}>
                       <TextField name="email" placeholder="john-doe@gmail.com" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        PHONE NUMBER
+                      <Typography className={label} variant="h6">
+                        Phone number
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
+                    <Grid className={formInput} item xs={9}>
                       <TextField name="phoneNumber" placeholder="Phone" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        WHERE YOU LIVE
+                      <Typography className={label} variant="h6">
+                        Where you live
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
+                    <Grid className={formInput} item xs={9}>
                       <TextField name="address" placeholder="Address" />
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.label} variant="h6">
-                        DESCRIBE YOURSELF
+                      <Typography className={label} variant="h6">
+                        Describe yourself
                       </Typography>
                     </Grid>
-                    <Grid className={classes.formInput} item xs={9}>
+                    <Grid className={formInput} item xs={9}>
                       <TextField name="about" placeholder="About you" multiline={true} rows={5} />
                     </Grid>
-                    <Grid className={classes.submitBtn} item xs={12}>
-                      <ButtonWrapper name="about">SAVE</ButtonWrapper>
+                    <Grid className={submitBtn} item xs={12}>
+                      <ButtonWrapper variant="contained" color="primary" size="large">
+                        Save
+                      </ButtonWrapper>
                     </Grid>
                   </Grid>
-                </CssBaseline>
-              </Form>
+                </Form>
+              </ScopedCssBaseline>
             </Paper>
           </Formik>
         </Container>

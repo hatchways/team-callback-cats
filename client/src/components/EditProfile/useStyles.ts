@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'right',
     fontWeight: 800,
     marginTop: 14,
+    textTransform: 'uppercase',
   },
   formCaption: {
     textAlign: 'center',
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: colors.red[400],
       margin: theme.spacing(3, 'auto'),
       padding: theme.spacing('1rem', 9),
+      textTransform: 'uppercase',
     },
   },
   formContainer: {

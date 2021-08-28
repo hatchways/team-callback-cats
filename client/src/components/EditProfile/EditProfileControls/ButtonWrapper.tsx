@@ -1,9 +1,13 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { FieldHookConfig, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 
-export const ButtonWrapper: React.FC<FieldHookConfig<string>> = (props): JSX.Element => {
-  const { children } = props;
+interface Props {
+  color: 'inherit' | 'primary' | 'secondary' | 'default' | undefined;
+  size: 'medium' | 'large' | 'small' | undefined;
+  variant: 'text' | 'outlined' | 'contained' | undefined;
+}
+export const ButtonWrapper: React.FC<Props> = ({ children, color, size, variant, ...rest }): JSX.Element => {
   const { submitForm } = useFormikContext();
 
   const handleSubmit = () => {
@@ -11,7 +15,7 @@ export const ButtonWrapper: React.FC<FieldHookConfig<string>> = (props): JSX.Ele
   };
 
   return (
-    <Button onClick={handleSubmit} variant="contained" color="primary" size="large">
+    <Button onClick={handleSubmit} variant={variant} color={color} size={size} {...rest}>
       {children}
     </Button>
   );
