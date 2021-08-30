@@ -19,6 +19,10 @@ export const theme = createMuiTheme({
       color: 'rgba(1, 1, 1, 0.5)',
       textAlign: 'center',
     },
+    h1: {
+      fontSize: '2rem',
+      fontWeight: 600,
+    },
   },
   palette: {
     primary: {

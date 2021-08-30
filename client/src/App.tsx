@@ -10,6 +10,7 @@ import Jobs from './pages/Jobs/Jobs';
 import Sitters from './pages/Sitters/Sitters';
 import Messages from './pages/Messages/Messages';
 import Profile from './pages/Profile/Profile';
+import Listings from './pages/Listings/Listings';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -46,6 +47,8 @@ function App(): JSX.Element {
                 <ProtectedRoute exact path="/profile">
                   <Profile />
                 </ProtectedRoute>
+                {/* TODO REMOVE TEMPORARY ROUTE FOR STYLING */}
+                <Route exact path="/listings" component={Listings} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
