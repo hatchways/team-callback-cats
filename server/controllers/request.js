@@ -41,7 +41,7 @@ exports.createRequest = asyncHandler( async (req, res, next) => {
 // UPDATE /request/update/:id : Update request with approved or decline
 exports.updateRequestStatus = asyncHandler( async (req, res, next) => {
     const request = req.body;
-    const id  = request._id;
+    const id  = req.params.id;
     const { status } = request;
 
     if (!id) {
@@ -56,9 +56,9 @@ exports.updateRequestStatus = asyncHandler( async (req, res, next) => {
         },
     )
     .then(() => {
-        res.send(200);
+        res.status(200);
     })
     .catch(err => {
-        res.send(500);
+        res.status(500);
     })
 })
