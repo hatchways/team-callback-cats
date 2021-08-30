@@ -11,16 +11,17 @@ const asyncHandler = require("express-async-handler");
 exports.updateProfile = asyncHandler(async (req, res, next) => {
     const  id  = req.user.id;
 
-    const { username, 
-            email, 
-            password,
-            location,
+    const { firstName, 
+            lastName, 
+            gender,
+            birthDate,
+            email,
             phoneNumber,
-            profilePic,
-            description} = req.body;
+            address,
+            about} = req.body;
 
   const emailExists = await User.findOne({ email });
-  const usernameExists = await User.findOne({ username});
+  const phoneNumberExists = await User.findOne({ phoneNumber});
 
 
 
@@ -29,20 +30,21 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
     throw new Error("A user with that email already exists");
   }
 
-  if (usernameExists){
+  if (phoneNumber){
       res.status(400);
-      throw new Error("A user with that username already exists");
+      throw new Error("A user with that phone number already exists");
   }
 
     User.findByIdAndUpdate({id},{
-        "username": username,
+        "firstName": firstName,
+        "lastName": lastName,
+        "gender": gender,
+        "birthDate": birthDate,
         "email": email,
-        "password": password,
-        "location": location,
         "phoneNumber": phoneNumber,
-        "profilePic": profilePic,
-        "description": description
-    }, function(err, result){
+        "location": address,
+        "description": about
+    }, function(err, res){
 
         if(err){
             res.status(404);
@@ -51,17 +53,20 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
             res.status(200).json({
               user: {
                 id: user._id,
-                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                gender: user.gender,
+                birthDate: user.birthDate,
                 email: user.email,
-                location: user.location,
                 phoneNumber: user.phoneNumber,
-                profilePic: user.profilePic,
+                location: user.location,
                 description: user.description
               }
             });
         }
 
     })
+    next();
 }) 
 
 

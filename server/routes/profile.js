@@ -9,7 +9,7 @@ const {
 
 
 
-router.route("/").put(updateProfile);
+router.route("/:id").put(updateProfile);
 
 router.route("/").get(protect, getProfile);
 

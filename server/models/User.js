@@ -67,6 +67,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: false,
     default: 1 
+  },
+  birthDate: {
+    type: Date,
+    required: false
   }
 });
 
