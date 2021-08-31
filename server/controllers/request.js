@@ -5,22 +5,19 @@ const asyncHandler = require("express-async-handler");
 // TODO => Handle status change cases
 
 // GET /requests: list of requests for logged in user
-exports.getRequests = asyncHandler( async (req, res, next) => {
-    const { userId } = req.body;
+exports.getRequests = asyncHandler( async (req, res) => {
+    const { userId } = req.user.id;
 
-    const requests = await Request.find()
+    const requests = await Request.find({ userId: userId })
         .then(() => {
-            const userRequests = requests.filter(r => {
-                return r.userId === userId;
-            });
-            res.status(200).json(userRequests);
+            res.status(200).json(requests);
         })
         .catch(err => console.log('Error getting requests:', err));
 });
 
 // POST /request: Create a new request
-exports.createRequest = asyncHandler( async (req, res, next) => {
-    const { userId, sitterId, start, end, status, paid } = req.body;
+exports.createRequest = asyncHandler( async (req, res) => {
+    const { userId, sitterId, start, end, status } = req.body;
 
     const request = await Request.create({
         userId, 
@@ -28,7 +25,6 @@ exports.createRequest = asyncHandler( async (req, res, next) => {
         start, 
         end, 
         status,
-        paid
     })
 
     if(request) {
