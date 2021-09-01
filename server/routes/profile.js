@@ -7,7 +7,7 @@ const {
         getAllProfiles
 } = require("../controllers/profile");
 
-router.route("/:id").put(protect, updateProfile);
+router.route("/").patch(protect, updateProfile);
 
 router.route("/").get(protect, getProfile);
 

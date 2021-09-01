@@ -34,21 +34,19 @@ const ProfilePhoto: FC = () => {
     const data = await response.json();
     setProfilePicUrl(data.location);
   };
-  console.log(loggedInUser);
 
   // Update User and DOM
   useEffect(() => {
     const updateUser = async () => {
       if (loggedInUser) {
-        await fetch(`profile/${loggedInUser.username}`, {
-          method: 'PUT',
-          body: JSON.stringify({ ...loggedInUser, profilePic: profilePicUrl }),
+        await fetch(`/profile`, {
+          method: 'PATCH',
+          body: JSON.stringify({ profilePic: profilePicUrl }),
         });
       }
     };
     updateUser();
   }, [loggedInUser, profilePicUrl]);
-  console.log(loggedInUser);
 
   // TODO Delete Image
   // Permanently from DB ?
