@@ -6,7 +6,7 @@ const asyncHandler = require("express-async-handler");
 
 // GET /requests: list of requests for logged in user
 exports.getRequests = asyncHandler( async (req, res) => {
-    const { userId } = req.user.id;
+    const userId = req.user.id;
 
     const requests = await Request.find({ userId: userId })
         .then(() => {
