@@ -22,7 +22,7 @@ const upload = multer({
         s3: s3,
         bucket: 'lovingdogsitter',
         metadata: function(req, file, cb) {
-            cb(null, { fieldName: file.fieldName });
+            cb(null, { fieldname: file.fieldname });
         },
         key: function(req, file, cb) {
             cb(null, Date.now().toString());
@@ -31,34 +31,14 @@ const upload = multer({
     fileFilter: fileFilter,
 })
 
-// upload route for multiple images
-router.post('/upload-image', upload.array('photos', 5), (req, res, next) => {
-    res.send(`Successfully uploaded ${req.files.length} files!`);
+// Profile Image Upload
+router.route('/profile-image').post(upload.single('profileImage'), (req, res) => {
+    const { location } = req.file;
+    try {
+        res.status(200).send(location);
+    } catch (err) {
+        res.status(500).send('Error:', err);
+    }
 });
 
-// upload single (profile picture)
-// const profileImageUpload = upload.single('image');
-// router.post('/:id/update-profile-picture', (req, res) => {
-//     const userId = req.params.id;
-//     profileImageUpload(req, res, function(err) {
-//         if (err) {
-//             return res.json({
-//                 success: false,
-//                 errors: {
-//                     title: "Image Upload Error",
-//                     detail: err.message,
-//                     error: err
-//                 }
-//             })
-//         }
-//         let update = { profilePic: req.file.location };
-
-//         User.findByIdAndUpdate(userId, update)
-//         .then((user) => res.status(200).json({ success: true, user: user }))
-//         .catch((err) => res.status(400).json({ success: false, error: err }))
-//     })
-// })
-
 module.exports = router;
-
-module.exports = upload;

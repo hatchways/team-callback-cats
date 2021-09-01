@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import useStyles from './useStyles';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
@@ -8,24 +8,41 @@ import JoePlaceholder from '../../Images/775db5e79c5294846949f1f55059b53317f51e3
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
+/*****************
+ TODO use auth to find current user, use effect to track and update profile picture
+ For clean up, move image functions to helper file
+ *******************/
+
 const ProfilePhoto: FC = () => {
   const classes = useStyles();
-  const [selectedFile, setSelectedFile] = useState({});
+  const [profilePicUrl, setProfilePicUrl] = useState(JoePlaceholder);
 
-  // Upload Image
-  // TODO hook up to upload route: images in s3, save url in User profile
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Get selected image get url and update user profile picture
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
-    setSelectedFile(e.target.files[0]);
-    console.log(selectedFile);
-    // Pass file to upload function
-    // upload user profile with image url
+    const formData = new FormData();
+    formData.append('profileImage', e.target.files[0]);
+
+    // upload to s3 and update user
+    // TODO get url from AWS and update user Data
+    await fetch('/upload/profile-image', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => {
+        res.json();
+        // setProfilePicture(url in response body?)
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log('Error :(', error));
   };
 
-  // Delete Image
-  // Permanently from DB ? TODO Create delete route
+  // TODO Delete Image
+  // Permanently from DB ?
   const handleDelete = () => {
     console.log('You are trying to delete this image');
   };
@@ -40,16 +57,9 @@ const ProfilePhoto: FC = () => {
         className={classes.container}
       >
         <Typography variant="h3">Profile Photo</Typography>
-        <Avatar src={JoePlaceholder} alt="User Profile Photo" className={classes.avatar} />
+        <Avatar src={profilePicUrl} alt="User Profile Photo" className={classes.avatar} />
         <Typography variant="subtitle1">Be sure to use a photo that clearly shows your face</Typography>
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="upload-button-file"
-          multiple
-          type="file"
-          onChange={handleFile}
-        />
+        <input accept="image/*" className={classes.input} id="upload-button-file" type="file" onChange={handleFile} />
         <label htmlFor="upload-button-file">
           <Button
             variant="outlined"

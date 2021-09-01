@@ -5,6 +5,6 @@ const { searchUsers } = require("../controllers/user");
 const { updateProfile } = require("../controllers/profile");
 
 router.route("/").get(protect, searchUsers);
-// router.route("/:id/update-profile-picture").post(protect, updateProfile);
+router.route("/update-profile").post(protect, updateProfile);
 
 module.exports = router;
