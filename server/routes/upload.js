@@ -25,7 +25,9 @@ const upload = multer({
             cb(null, { fieldname: file.fieldname });
         },
         key: function(req, file, cb) {
-            cb(null, Date.now().toString());
+            let newFileName = Date.now() + '-' + file.originalname;
+            let fullPath = 'media/images/' + newFileName;
+            cb(null, fullPath);
         }
     }),
     fileFilter: fileFilter,
@@ -33,9 +35,9 @@ const upload = multer({
 
 // Profile Image Upload
 router.route('/profile-image').post(upload.single('profileImage'), (req, res) => {
-    const { location } = req.file;
+    const image = req.file;
     try {
-        res.status(200).send(location);
+        res.status(200).send(image);
     } catch (err) {
         res.status(500).send('Error:', err);
     }

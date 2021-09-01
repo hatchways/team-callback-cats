@@ -7,17 +7,18 @@ import Typography from '@material-ui/core/Typography';
 import JoePlaceholder from '../../Images/775db5e79c5294846949f1f55059b53317f51e30.png';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { useAuth } from '../../context/useAuthContext';
 
 /*****************
- TODO use auth to find current user, use effect to track and update profile picture
- For clean up, move image functions to helper file
+ TODO move image functions to helper file
  *******************/
 
 const ProfilePhoto: FC = () => {
   const classes = useStyles();
+  const { loggedInUser } = useAuth();
   const [profilePicUrl, setProfilePicUrl] = useState(JoePlaceholder);
 
-  // Get selected image get url and update user profile picture
+  // Get selected image
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
@@ -25,21 +26,29 @@ const ProfilePhoto: FC = () => {
     const formData = new FormData();
     formData.append('profileImage', e.target.files[0]);
 
-    // upload to s3 and update user
-    // TODO get url from AWS and update user Data
-    await fetch('/upload/profile-image', {
+    // Upload to s3 and return url
+    const response = await fetch('/upload/profile-image', {
       method: 'POST',
       body: formData,
-    })
-      .then((res) => {
-        res.json();
-        // setProfilePicture(url in response body?)
-      })
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => console.log('Error :(', error));
+    });
+    const data = await response.json();
+    setProfilePicUrl(data.location);
   };
+  console.log(loggedInUser);
+
+  // Update User and DOM
+  useEffect(() => {
+    const updateUser = async () => {
+      if (loggedInUser) {
+        await fetch(`profile/${loggedInUser.username}`, {
+          method: 'PUT',
+          body: JSON.stringify({ ...loggedInUser, profilePic: profilePicUrl }),
+        });
+      }
+    };
+    updateUser();
+  }, [loggedInUser, profilePicUrl]);
+  console.log(loggedInUser);
 
   // TODO Delete Image
   // Permanently from DB ?

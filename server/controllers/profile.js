@@ -1,10 +1,6 @@
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 
-
-
-
-
 // @route PUT /profile/:id
 // @desc get a profile with given ID
 // @access Private
@@ -21,8 +17,6 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
 
   const emailExists = await User.findOne({ email });
   const usernameExists = await User.findOne({ username});
-
-
 
   if (emailExists) {
     res.status(400);
@@ -62,8 +56,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
         }
 
     })
-}) 
-
+})
 
 // @route GET /profile/:id
 // @desc update a profile with the given ID and parameters
@@ -92,7 +85,6 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
     }
   })
 })
-
 
 // @route GET /profile
 // @desc update a profile with the given ID and parameters
