@@ -17,6 +17,7 @@ import { SnackBarProvider } from './context/useSnackbarContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './App.css';
 import ProfilePhoto from './components/ProfilePhoto/ProfilePhoto';
+import ListingDetail from './pages/Listings/ListingDetail/ListingDetail';
 
 function App(): JSX.Element {
   return (
@@ -30,7 +31,7 @@ function App(): JSX.Element {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/demo" component={Dashboard} />
-                <Route exact path="/profile" component={ProfilePhoto} />
+                {/* <Route exact path="/profile/edit-photo" component={ProfilePhoto} /> */}
                 <ProtectedRoute exact path="/dashboard">
                   <Dashboard />
                 </ProtectedRoute>
@@ -49,6 +50,7 @@ function App(): JSX.Element {
                 </ProtectedRoute>
                 {/* TODO REMOVE TEMPORARY ROUTE FOR STYLING */}
                 <Route exact path="/listings" component={Listings} />
+                <Route exact path="/listings/:id-:username" component={ListingDetail} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>

@@ -24,8 +24,8 @@ const Navbar: FC = () => {
           <Grid item>
             <img src={Logo} className={classes.logo} onClick={handleClick} />
           </Grid>
-          {/* TODO REMOVE TEMPORARY ROUTE FOR STYLING */}
-          <Link to="/listings">Listings temp</Link>
+          {/* TODO REMOVE TEMPORARY LINK FOR STYLING */}
+          <Link to="/listings/">Listings temp</Link>
           <Grid item>{!loggedInUser ? <PublicLinks /> : <MemberLinks />}</Grid>
         </Grid>
       </Toolbar>

@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     padding: '.5rem 0',
   },
   listingsContainer: {
-    width: '90%',
+    width: '100%',
     margin: '1rem auto 2rem',
   },
 }));

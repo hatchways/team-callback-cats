@@ -8,15 +8,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Grid from '@material-ui/core/Grid';
 import ListingCard from './ListingCard/ListingCard';
+import dummyListing from './dummyListing';
 
 const Listings: FC = () => {
   const classes = useStyles();
-
-  // TODO get listings
-  const profiles = Array.from(Array(6).keys());
+  const listings = [dummyListing, dummyListing, dummyListing]; // listings === search results
 
   return (
-    <Box p={5} m={2} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Box p={4} m={2} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <Typography variant="h1">Your search results</Typography>
       <Box display="flex" m={4} className={classes.searchContainer}>
         <TextField
@@ -33,14 +32,14 @@ const Listings: FC = () => {
         ></TextField>
         <TextField variant="outlined" type="date" className={classes.datePicker}></TextField>
       </Box>
-      <Grid container className={classes.listingsContainer} spacing={8}>
+      <Grid container className={classes.listingsContainer} spacing={6}>
         {/* MAP OVER ARRAY OF LISTINGS / RESULTS */}
-        {profiles &&
-          profiles.map((p) => {
-            <Grid item key={p}>
-              <ListingCard />
-            </Grid>;
-          })}
+        {listings &&
+          listings.map((l) => (
+            <Grid item key={l.id}>
+              <ListingCard listing={l} />
+            </Grid>
+          ))}
       </Grid>
       <Button variant="outlined" size="large">
         Show More
