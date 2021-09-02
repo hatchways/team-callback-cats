@@ -16,7 +16,7 @@ import { useAuth } from '../../context/useAuthContext';
 const ProfilePhoto: FC = () => {
   const classes = useStyles();
   const { loggedInUser } = useAuth();
-  const [profilePicUrl, setProfilePicUrl] = useState(JoePlaceholder);
+  const [profilePicUrl, setProfilePicUrl] = useState('');
 
   // Get selected image
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +64,11 @@ const ProfilePhoto: FC = () => {
         className={classes.container}
       >
         <Typography variant="h3">Profile Photo</Typography>
-        <Avatar src={profilePicUrl} alt="User Profile Photo" className={classes.avatar} />
+        <Avatar
+          src={profilePicUrl.length === 0 ? JoePlaceholder : profilePicUrl}
+          alt="User Profile Photo"
+          className={classes.avatar}
+        />
         <Typography variant="subtitle1">Be sure to use a photo that clearly shows your face</Typography>
         <input accept="image/*" className={classes.input} id="upload-button-file" type="file" onChange={handleFile} />
         <label htmlFor="upload-button-file">
@@ -72,7 +76,7 @@ const ProfilePhoto: FC = () => {
             variant="outlined"
             color="secondary"
             component="span"
-            fullWidth={true}
+            fullWidth
             startIcon={<CloudUploadIcon />}
             className={classes.cta}
           >
@@ -80,13 +84,7 @@ const ProfilePhoto: FC = () => {
           </Button>
         </label>
 
-        <Button
-          variant="text"
-          component="button"
-          fullWidth={true}
-          onClick={handleDelete}
-          startIcon={<DeleteOutlineIcon />}
-        >
+        <Button variant="text" component="button" fullWidth onClick={handleDelete} startIcon={<DeleteOutlineIcon />}>
           Delete Photo
         </Button>
       </Box>
