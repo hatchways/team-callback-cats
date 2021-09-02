@@ -4,12 +4,10 @@ const router = express.Router();
 const { 
         updateProfile,
         getProfile,
-        getAllProfiles} = require("../controllers/profile");
+        getAllProfiles
+} = require("../controllers/profile");
 
-
-
-
-router.route("/").put(updateProfile);
+router.route("/").patch(protect, updateProfile);
 
 router.route("/").get(protect, getProfile);
 

@@ -1,48 +1,16 @@
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 
-
-
-
-
-// @route PUT /profile/:id
-// @desc get a profile with given ID
+// @route PATCH /profile
+// @desc get a profile, id in req.body
 // @access Private
 exports.updateProfile = asyncHandler(async (req, res, next) => {
     const  id  = req.user.id;
 
-    const { username, 
-            email, 
-            password,
-            location,
-            phoneNumber,
-            profilePic,
-            description} = req.body;
-
-  const emailExists = await User.findOne({ email });
-  const usernameExists = await User.findOne({ username});
-
-
-
-  if (emailExists) {
-    res.status(400);
-    throw new Error("A user with that email already exists");
-  }
-
-  if (usernameExists){
-      res.status(400);
-      throw new Error("A user with that username already exists");
-  }
-
-    User.findByIdAndUpdate({id},{
-        "username": username,
-        "email": email,
-        "password": password,
-        "location": location,
-        "phoneNumber": phoneNumber,
-        "profilePic": profilePic,
-        "description": description
-    }, function(err, result){
+    User.findByIdAndUpdate(
+      {id},
+      {...req.body}, 
+      function(err, res) {
 
         if(err){
             res.status(404);
@@ -62,8 +30,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
         }
 
     })
-}) 
-
+})
 
 // @route GET /profile/:id
 // @desc update a profile with the given ID and parameters
@@ -92,7 +59,6 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
     }
   })
 })
-
 
 // @route GET /profile
 // @desc update a profile with the given ID and parameters
