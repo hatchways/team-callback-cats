@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../context/useAuthContext';
 import useStyles from './useStyles';
 import Logo from '../../Images/logo.png';
@@ -24,8 +24,6 @@ const Navbar: FC = () => {
           <Grid item>
             <img src={Logo} className={classes.logo} onClick={handleClick} />
           </Grid>
-          {/* TODO REMOVE TEMPORARY LINK FOR STYLING */}
-          <Link to="/listings/">Listings temp</Link>
           <Grid item>{!loggedInUser ? <PublicLinks /> : <MemberLinks />}</Grid>
         </Grid>
       </Toolbar>
