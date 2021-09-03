@@ -25,7 +25,7 @@ const ListingDetail = (): JSX.Element => {
   const location: LocationType = useLocation();
   const listing: Listing = location.state;
 
-  const { id, profilePic, headerImg, username, subtitle, additionalPics, details, city, rating, rate } = listing;
+  const { profilePic, headerImg, username, subtitle, additionalPics, details, city, rating, rate } = listing;
 
   return (
     <Box display="flex" justifyContent="center" alignItems="flex-start" p={8} className={classes.root}>
