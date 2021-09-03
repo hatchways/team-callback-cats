@@ -14,7 +14,7 @@ export const theme = createMuiTheme({
     },
     subtitle1: {
       width: 150,
-      fontSize: 10,
+      fontSize: 12,
       margin: '-15 auto 0',
       color: 'rgba(1, 1, 1, 0.5)',
       textAlign: 'center',

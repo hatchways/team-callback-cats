@@ -32,7 +32,7 @@ const ListingCard: FC<ListingCardProps> = ({ listing }) => {
   const handleClick = () => {
     const location = {
       pathname: `/listings/${id}-${username.split(' ').join('-')}`,
-      state: { listing },
+      state: { ...listing },
     };
     history.push(location);
   };
