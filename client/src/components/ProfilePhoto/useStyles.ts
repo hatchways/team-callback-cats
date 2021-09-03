@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#fff',
     height: '60vh',
@@ -9,26 +9,20 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: '85%',
-    width: '40%',
+    width: '50%',
   },
   avatar: {
     height: '7.5rem',
     width: '7.5rem',
     marginBottom: '-1.5rem',
   },
+  input: {
+    display: 'none',
+  },
   cta: {
-    width: '15rem',
-    padding: '.75rem 1.5rem',
-    '&:first-of-type': {
-      color: '#ed4740',
-      border: '1px solid #ed4740',
-      marginBottom: '-1rem',
-      fontWeight: 500,
-      // '&:hover': {
-      //   backgroundColor: '#ed4740',
-      //   color: '#fff',
-      // },
-    },
+    width: '15.5rem',
+    marginBottom: '-1rem',
+    fontWeight: 500,
   },
   icon: {
     marginRight: '1rem',

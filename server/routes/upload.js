@@ -7,23 +7,40 @@ const config = require('../utils/s3Config');
 
 const s3 = new aws.S3(config);
 
+// filter for image formats only
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+
+// config ulpoad function, apply filter
 const upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'lovingdogsitter',
         metadata: function(req, file, cb) {
-            cb(null, { fieldName: file.fieldName });
+            cb(null, { fieldname: file.fieldname });
         },
         key: function(req, file, cb) {
-            cb(null, Date.now().toString());
+            let newFileName = Date.now() + '-' + file.originalname;
+            let fullPath = 'media/images/' + newFileName;
+            cb(null, fullPath);
         }
-    })
+    }),
+    fileFilter: fileFilter,
 })
 
-// upload route | Allow 5 images
-router.post('/upload-image', upload.array('photos', 5), (req, res, next) => {
-    res.send(`Successfully uploaded ${req.files.length} files!`);
+// Profile Image Upload
+router.route('/profile-image').post(upload.single('profileImage'), (req, res) => {
+    const image = req.file;
+    try {
+        res.status(200).send(image);
+    } catch (err) {
+        res.status(500).send('Error:', err);
+    }
 });
-
 
 module.exports = router;

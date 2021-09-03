@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC, useState } from 'react';
 import useStyles from './useStyles';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
@@ -7,18 +7,50 @@ import Typography from '@material-ui/core/Typography';
 import JoePlaceholder from '../../Images/775db5e79c5294846949f1f55059b53317f51e30.png';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { useAuth } from '../../context/useAuthContext';
+
+/*****************
+ TODO move image functions to helper file
+ match loggedInUser & user in DB, cache user data in local storage?
+ *******************/
 
 const ProfilePhoto: FC = () => {
   const classes = useStyles();
+  const { loggedInUser } = useAuth();
+  const [profilePicUrl, setProfilePicUrl] = useState('');
 
-  // Upload Image
-  // TODO hook up to upload route: images in s3, save url in mongoDB
-  const handleUpload = () => {
-    console.log('You are trying to upload an image');
+  // Get selected image
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append('profileImage', e.target.files[0]);
+
+    // Upload to s3 and return url
+    const response = await fetch('/upload/profile-image', {
+      method: 'POST',
+      body: formData,
+    });
+
+    // update DOM
+    const data = await response.json();
+    setProfilePicUrl(data.location);
+
+    // update user in mongoDB
+    await fetch(`/profile`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ profilePic: data.location }),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
   };
 
-  // Delete Image
-  // Permanently from DB ? TODO Create delete route
+  // TODO Delete Image
+  // Permanently from DB ?
   const handleDelete = () => {
     console.log('You are trying to delete this image');
   };
@@ -33,18 +65,27 @@ const ProfilePhoto: FC = () => {
         className={classes.container}
       >
         <Typography variant="h3">Profile Photo</Typography>
-        <Avatar src={JoePlaceholder} alt="User Profile Photo" className={classes.avatar} />
+        <Avatar
+          src={profilePicUrl === '' ? JoePlaceholder : profilePicUrl}
+          alt="User Profile Photo"
+          className={classes.avatar}
+        />
         <Typography variant="subtitle1">Be sure to use a photo that clearly shows your face</Typography>
-        <Button
-          variant="outlined"
-          startIcon={<CloudUploadIcon />}
-          className={classes.cta}
-          onClick={handleUpload}
-          color="secondary"
-        >
-          Upload a file from your device
-        </Button>
-        <Button className={classes.cta} onClick={handleDelete} startIcon={<DeleteOutlineIcon />}>
+        <input accept="image/*" className={classes.input} id="upload-button-file" type="file" onChange={handleFile} />
+        <label htmlFor="upload-button-file">
+          <Button
+            variant="outlined"
+            color="secondary"
+            component="span"
+            fullWidth
+            startIcon={<CloudUploadIcon />}
+            className={classes.cta}
+          >
+            Upload a file from your device
+          </Button>
+        </label>
+
+        <Button variant="text" component="button" fullWidth onClick={handleDelete} startIcon={<DeleteOutlineIcon />}>
           Delete Photo
         </Button>
       </Box>
