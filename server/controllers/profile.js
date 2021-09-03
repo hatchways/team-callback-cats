@@ -4,31 +4,23 @@ const asyncHandler = require("express-async-handler");
 // @route PATCH /profile
 // @desc get a profile, id in req.body
 // @access Private
-exports.updateProfile = asyncHandler(async (req, res, next) => {
-    const  id  = req.user.id;
+exports.updateProfile = asyncHandler(async (req, res) => {
+    const id  = req.user.id;
 
     User.findByIdAndUpdate(
-      {id},
-      {...req.body}, 
+      id,
+      {
+        $set: {
+          profilePic: req.body.profilePic,
+        },
+      }, 
       function(err, res) {
-
         if(err){
-            res.status(404);
+            console.log('Error: ', err);
         }
-        else{
-            res.status(200).json({
-              user: {
-                id: user._id,
-                username: user.username,
-                email: user.email,
-                location: user.location,
-                phoneNumber: user.phoneNumber,
-                profilePic: user.profilePic,
-                description: user.description
-              }
-            });
+        else {
+          console.log('Response: ', res.profilePic);
         }
-
     })
 })
 

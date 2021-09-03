@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import useStyles from './useStyles';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
@@ -11,6 +11,7 @@ import { useAuth } from '../../context/useAuthContext';
 
 /*****************
  TODO move image functions to helper file
+ match loggedInUser & user in DB, cache user data in local storage?
  *******************/
 
 const ProfilePhoto: FC = () => {
@@ -31,22 +32,22 @@ const ProfilePhoto: FC = () => {
       method: 'POST',
       body: formData,
     });
+
+    // update DOM
     const data = await response.json();
     setProfilePicUrl(data.location);
-  };
 
-  // Update User and DOM
-  useEffect(() => {
-    const updateUser = async () => {
-      if (loggedInUser) {
-        await fetch(`/profile`, {
-          method: 'PATCH',
-          body: JSON.stringify({ profilePic: profilePicUrl }),
-        });
-      }
-    };
-    updateUser();
-  }, [loggedInUser, profilePicUrl]);
+    // update user in mongoDB
+    await fetch(`/profile`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ profilePic: data.location }),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+  };
 
   // TODO Delete Image
   // Permanently from DB ?
@@ -65,7 +66,7 @@ const ProfilePhoto: FC = () => {
       >
         <Typography variant="h3">Profile Photo</Typography>
         <Avatar
-          src={profilePicUrl.length === 0 ? JoePlaceholder : profilePicUrl}
+          src={profilePicUrl === '' ? JoePlaceholder : profilePicUrl}
           alt="User Profile Photo"
           className={classes.avatar}
         />
