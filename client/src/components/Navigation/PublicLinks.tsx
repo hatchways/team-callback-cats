@@ -10,8 +10,8 @@ const PublicLinks: FC = () => {
 
   return (
     <List component="ul" className={classes.publicLinks}>
-      {/* TODO REMOVE TEMPORARY LINK FOR STYLING */}
-      <Link to="/listings/" className={classes.sitterLink}>
+      {/* TODO REMOVE TEMPORARY ROUTE FOR STYLING */}
+      <Link to="/listings" className={classes.sitterLink}>
         Listings temp
       </Link>
       <Link to="/become-a-sitter" className={classes.sitterLink}>
