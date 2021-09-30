@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
   listingCard: {
     textAlign: 'center',
     padding: '2rem 0 0',
-    width: '300px',
+    width: '250px',
   },
   content: {
     width: '75%',

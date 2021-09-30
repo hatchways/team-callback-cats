@@ -29,6 +29,10 @@ const MemberLinks: FC = () => {
 
   return (
     <List component="ul" className={classes.memberLinks}>
+      {/* TODO REMOVE TEMPORARY LINK FOR STYLING */}
+      <Link to="/listings/" className={classes.memberLinkItem}>
+        Listings temp
+      </Link>
       {/* My sitters or My Jobs depending on user */}
       <ListItem
         component={Link}
