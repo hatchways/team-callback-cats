@@ -31,7 +31,6 @@ function App(): JSX.Element {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/demo" component={Dashboard} />
-                {/* <Route exact path="/profile/edit-photo" component={ProfilePhoto} /> */}
                 <ProtectedRoute exact path="/dashboard">
                   <Dashboard />
                 </ProtectedRoute>
