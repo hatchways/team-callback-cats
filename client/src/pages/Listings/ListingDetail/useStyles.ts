@@ -64,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
   bookingContainer: {
     padding: '2rem 1rem',
     backgroundColor: '#fff',
-    // height: '60%',
     flex: 0.8,
     borderRadius: theme.shape.borderRadius,
     boxShadow: '0px 0px 15px 5px rgba(0,0,0,0.2)',
